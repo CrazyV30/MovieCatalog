@@ -1,4 +1,7 @@
 
+using backEnd.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace backEnd
 {
     public class Program
@@ -8,9 +11,9 @@ namespace backEnd
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<AppDbContext>(op => op.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
             var app = builder.Build();

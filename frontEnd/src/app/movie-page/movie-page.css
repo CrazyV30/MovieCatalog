@@ -1,0 +1,89 @@
+.catalog-page {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.catalog-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  padding: 32px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.add-btn {
+  width: auto;
+  padding: 10px 24px;
+}
+
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.film-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.film-poster {
+  background-color: #e5e7eb;
+  border-radius: 8px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.film-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text-line {
+  height: 12px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.title-line {
+  height: 16px;
+  background-color: #d1d5db;
+  margin-bottom: 4px;
+}
+
+.short-line {
+  width: 50%;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  text-align: left;
+  padding: 4px 0;
+  font-size: 13px;
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.remove-btn:hover {
+  text-decoration: underline;
+  color: #b91c1c;
+}

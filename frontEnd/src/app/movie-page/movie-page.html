@@ -1,1 +1,37 @@
-<p>movie-page works!</p>
+<div class="catalog-page">
+  <div class="catalog-container">
+    
+    <div class="catalog-header">
+      <button class="btn add-btn">Add Film</button>
+    </div>
+    <!-- TODO: correct output of cards -->
+    <div class="film-grid">
+      <!-- Картка фільму (можна розмножити через *ngFor в Angular) -->
+      <div class="film-card">
+        <div class="film-poster">
+          <span>Film</span>
+        </div>
+        <div class="film-details">
+          <div class="text-line title-line"></div>
+          <div class="text-line"></div>
+          <div class="text-line short-line"></div>
+        </div>
+        <button class="remove-btn">Remove &#10005;</button>
+      </div>
+      
+      <!-- Приклад ще однієї картки -->
+      <div class="film-card">
+        <div class="film-poster">
+          <span>Film</span>
+        </div>
+        <div class="film-details">
+          <div class="text-line title-line"></div>
+          <div class="text-line"></div>
+          <div class="text-line short-line"></div>
+        </div>
+        <button class="remove-btn">Remove &#10005;</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
