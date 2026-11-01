@@ -17,7 +17,7 @@ namespace backEnd.Services
     {
         public UserRegisterResult Register(UserRegisterDTO userDTO)
         {
-            if (userDTO.Email.Length < 7 || userDTO.Email.Length > 20) return UserRegisterResult.LoginError;
+            if (userDTO.Email.Length < 7 || userDTO.Email.Length > 50) return UserRegisterResult.LoginError;
             else if (userDTO.Password.Length < 6 || userDTO.Password != userDTO.ConfirmPassword) return UserRegisterResult.PasswordError;
             else if (userDTO.Username.Length < 2 || userDTO.Username.Length>50) return UserRegisterResult.UserNameError;
             else if (userDTO.Surname.Length < 2 || userDTO.Surname.Length>50) return UserRegisterResult.SurnameError;

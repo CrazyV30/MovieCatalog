@@ -9,10 +9,10 @@ namespace backEnd.Controllers
     [ApiController]
     public class UserController(UserService _userService) : ControllerBase
     {
-        [HttpGet("login")]
+        [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Login(UserLoginDTO userLogin)
+        public ActionResult Login([FromBody]UserLoginDTO userLogin)
         {
             if (_userService.Login(userLogin.Email, userLogin.Password)) return Ok();
             return BadRequest("Login or Password is uncorrect");
@@ -20,7 +20,7 @@ namespace backEnd.Controllers
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Register(UserRegisterDTO userRegister)
+        public ActionResult Register([FromBody] UserRegisterDTO userRegister)
         {
             var result = _userService.Register(userRegister);
             switch (result)

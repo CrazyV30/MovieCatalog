@@ -2,36 +2,32 @@
   <div class="catalog-container">
     
     <div class="catalog-header">
-      <button class="btn add-btn">Add Film</button>
+      <button class="btn add-btn" (click)="onAddMovie()">Add Film</button>
+      <button class="btn add-btn" (click)="logout()">Log out</button>
     </div>
-    <!-- TODO: correct output of cards -->
+    
     <div class="film-grid">
-      <!-- Картка фільму (можна розмножити через *ngFor в Angular) -->
-      <div class="film-card">
-        <div class="film-poster">
-          <span>Film</span>
+      @for (movie of movies(); track $index) {
+        <div class="film-card">
+          <div class="film-poster-container">
+            <img [src]="movie.photoPath" [alt]="'Постер ' + movie.title" class="film-poster-img" />
+          </div>
+          
+          <div class="film-details">
+            <h3 class="film-title">{{ movie.title }}</h3>
+            
+            <div class="film-meta">
+              <span class="meta-item"><strong>Director:</strong> {{ movie.director }}</span>
+              <span class="meta-item"><strong>Runtime:</strong> {{ movie.runtime }}</span>
+            </div>
+            
+            <p class="film-description">{{ movie.description }}</p>
+          </div>
+          <div class="film-actions">
+            <button class="remove-btn" (click)="removeMovie(movie.title)">Remove &#10005;</button>
+          </div>
         </div>
-        <div class="film-details">
-          <div class="text-line title-line"></div>
-          <div class="text-line"></div>
-          <div class="text-line short-line"></div>
-        </div>
-        <button class="remove-btn">Remove &#10005;</button>
-      </div>
-      
-      <!-- Приклад ще однієї картки -->
-      <div class="film-card">
-        <div class="film-poster">
-          <span>Film</span>
-        </div>
-        <div class="film-details">
-          <div class="text-line title-line"></div>
-          <div class="text-line"></div>
-          <div class="text-line short-line"></div>
-        </div>
-        <button class="remove-btn">Remove &#10005;</button>
-      </div>
-      
+      }      
     </div>
   </div>
 </div>

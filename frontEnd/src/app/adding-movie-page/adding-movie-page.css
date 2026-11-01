@@ -1,0 +1,56 @@
+.add-film-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.add-film-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px; /* Картка трохи ширша, щоб зручно розмістити опис та рядок з двома полями */
+}
+
+.add-film-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #111827;
+}
+
+.add-film-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Вирівнювання полів в один рядок (наприклад, для Року та Жанру) */
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .input-field {
+  flex: 1; /* Поля займають рівну ширину */
+}
+
+/* Специфічні налаштування для багаторядкового текстового поля */
+.textarea-field {
+  resize: vertical; /* Дозволяє користувачу розтягувати поле лише по вертикалі */
+  min-height: 100px;
+  font-family: inherit; /* Успадковує шрифт глобальних налаштувань */
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 480px) {
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

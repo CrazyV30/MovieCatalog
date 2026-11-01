@@ -1,1 +1,29 @@
-<p>adding-movie-page works!</p>
+<div class="add-film-page">
+  <div class="add-film-card">
+    <h2 class="add-film-title">ADD NEW FILM</h2>
+    
+    <form class="add-film-form" method="post" #addFilmForm="ngForm" (ngSubmit)="onAddMovie(addFilmForm)">
+      <!-- Назва фільму -->
+      <input type="text" [(ngModel)]="movieData.Title" name="Title" placeholder="Film Title" class="input-field" required>
+      
+      <!-- Рядок з двома полями для економії місця -->
+      <div class="form-row">
+        <input type="text" [(ngModel)]="movieData.Runtime" name="Runtime" placeholder="Runtime" class="input-field" required>
+        <input type="text" [(ngModel)]="movieData.Director" name="Director" placeholder="Director" class="input-field" required>
+      </div>
+      
+      <!-- Посилання на картинку -->
+      <input type="url" [(ngModel)]="movieData.PhotoPath" name="PhotoPath" placeholder="Poster Image URL" class="input-field" required>
+      
+      <!-- Опис фільму -->
+      <textarea [(ngModel)]="movieData.Description" name="Description" placeholder="Film Description..." class="input-field textarea-field" rows="4" required></textarea>
+      
+      <!-- Кнопки -->
+      <div class="form-actions">
+        <button type="submit" class="btn primary-btn">Save Film</button>
+        <!-- Кнопка скасування повертає до каталогу -->
+        <button type="button" class="btn secondary-btn" routerLink="/catalog">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

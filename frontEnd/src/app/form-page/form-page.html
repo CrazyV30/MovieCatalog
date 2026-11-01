@@ -1,13 +1,13 @@
 <div class="login-page">
   <div class="login-card">
     <h2 class="login-title">LOGIN</h2>
-    <form class="login-form" method="post">
-      <input type="text" name="email" placeholder="Email..." class="input-field" required>
-      <input type="password" name="password" placeholder="Password..." class="input-field" required>
-      
+    <form class="login-form" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <input type="text" [(ngModel)]="userLogin.Email" name="Email" placeholder="Email..." class="input-field" required>
+      <input type="password" [(ngModel)]="userLogin.Password" name="Password" placeholder="Password..." class="input-field" required>
+       
       <div class="form-actions">
         <button type="submit" class="btn login-btn">Login</button>
-        <button type="button" class="btn register-btn">Register</button>
+        <button type="button" class="btn register-btn" (click)="toRegister()">Register</button>
       </div>
     </form>
   </div>

@@ -87,3 +87,7 @@
   text-decoration: underline;
   color: #b91c1c;
 }
+.film-meta{
+  display: flex;
+  flex-direction: column;
+}

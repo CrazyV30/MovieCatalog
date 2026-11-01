@@ -2546,11 +2546,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\IT-office\\projects\\Coding(asp-net)\\hw10\\backEnd\\backEnd\\backEnd.csproj",
+      "projectUniqueName": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\backEnd.csproj",
       "projectName": "backEnd",
-      "projectPath": "D:\\IT-office\\projects\\Coding(asp-net)\\hw10\\backEnd\\backEnd\\backEnd.csproj",
+      "projectPath": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\backEnd.csproj",
       "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-      "outputPath": "D:\\IT-office\\projects\\Coding(asp-net)\\hw10\\backEnd\\backEnd\\obj\\",
+      "outputPath": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
