@@ -21,9 +21,9 @@ export class MoviePage {
   onAddMovie() {
     this.router.navigate(['/addMovie']);
   }
-  removeMovie(title:string){
-    this.http.delete(this.httpUrl + '/' + title).subscribe(() => {
-      this.movies.set(this.movies().filter(movie => movie.title !== title));
+  removeMovie(id:number){
+    this.http.delete(this.httpUrl + '/' + id).subscribe(() => {
+      this.movies.set(this.movies().filter(movie => movie.id !== id));
     });
   }
   logout() {

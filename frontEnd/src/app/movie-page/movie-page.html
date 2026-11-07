@@ -21,10 +21,11 @@
               <span class="meta-item"><strong>Runtime:</strong> {{ movie.runtime }}</span>
             </div>
             
+            <input type="hidden" [value]="movie.id" />
             <p class="film-description">{{ movie.description }}</p>
           </div>
           <div class="film-actions">
-            <button class="remove-btn" (click)="removeMovie(movie.title)">Remove &#10005;</button>
+            <button class="remove-btn" (click)="removeMovie(movie.id)">Remove &#10005;</button>
           </div>
         </div>
       }      
