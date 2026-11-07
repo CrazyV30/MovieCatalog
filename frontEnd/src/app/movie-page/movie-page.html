@@ -1,34 +1,32 @@
-<div class="catalog-page">
-  <div class="catalog-container">
-    
-    <div class="catalog-header">
-      <button class="btn add-btn" (click)="onAddMovie()">Add Film</button>
-      <button class="btn add-btn" (click)="logout()">Log out</button>
-    </div>
-    
-    <div class="film-grid">
-      @for (movie of movies(); track $index) {
-        <div class="film-card">
-          <div class="film-poster-container">
-            <img [src]="movie.photoPath" [alt]="'Постер ' + movie.title" class="film-poster-img" />
-          </div>
-          
-          <div class="film-details">
-            <h3 class="film-title">{{ movie.title }}</h3>
-            
-            <div class="film-meta">
-              <span class="meta-item"><strong>Director:</strong> {{ movie.director }}</span>
-              <span class="meta-item"><strong>Runtime:</strong> {{ movie.runtime }}</span>
-            </div>
-            
-            <input type="hidden" [value]="movie.id" />
-            <p class="film-description">{{ movie.description }}</p>
-          </div>
-          <div class="film-actions">
-            <button class="remove-btn" (click)="removeMovie(movie.id)">Remove &#10005;</button>
-          </div>
+<div class="catalog-container">
+  <!-- Верхня панель дій -->
+  <div class="catalog-header">
+    <h2>Каталог фільмів</h2>
+    <button type="button" class="btn btn-primary" (click)="onAddMovie()">+ Додати фільм</button>
+    <button type="button" class="btn btn-primary" (click)="logout()">Вийти</button>
+  </div>
+
+  <!-- Сітка фільмів -->
+  <div class="movies-grid">
+    @for (movie of movies(); track movie.id) {
+      <div class="movie-card" (click)="viewMovieDetails(movie.id)">
+        <button type="button" class="btn-delete-icon" title="Видалити фільм" (click)="removeMovie(movie.id)">✕</button>
+        <div class="card-poster">
+          <img [src]="movie.photoPath" [alt]="movie.title" loading="lazy">
         </div>
-      }      
-    </div>
+        <div class="card-content">
+          <h3 class="card-title">{{ movie.title }}</h3>
+          <p class="card-meta">
+            <span>{{ movie.runtime }}</span> • <span>{{ movie.director }}</span>
+          </p>
+          <p class="card-description">{{ movie.description }}</p>
+          
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>Фільмів поки немає в каталозі.</p>
+      </div>
+    }
   </div>
 </div>

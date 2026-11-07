@@ -1,0 +1,36 @@
+<div class="movie-details-container">
+  <!-- Навігація назад -->
+  <div class="navigation-bar">
+    <button type="button" class="btn btn-secondary" (click)="goBack()">
+      ← Повернутися назад
+    </button>
+  </div>
+
+  <div class="movie-details-card">
+    <!-- Постер фільму -->
+    <div class="poster-container">
+      <img [src]="movie()[0]?.photoPath" [alt]="movie()[0]?.title" class="movie-poster">
+    </div>
+
+    <!-- Інформація про фільм -->
+    <div class="movie-info">
+      <div class="header-actions">
+        <h1 class="movie-title">{{ movie()[0]?.title }}</h1>
+        <!-- Кнопка редагування -->
+        <button type="button" class="btn btn-primary" (click)="edit(movie()[0]!.id)">
+          Редагувати
+        </button>
+      </div>
+
+      <div class="meta-data">
+        <span class="badge">Тривалість: {{ movie()[0]?.runtime }}</span>
+        <span class="director">Режисер: <strong>{{ movie()[0]?.director }}</strong></span>
+      </div>
+
+      <div class="description-section">
+        <h3>Опис фільму</h3>
+        <p class="movie-description">{{ movie()[0]?.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

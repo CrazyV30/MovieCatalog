@@ -1,0 +1,79 @@
+<div class="form-card">
+  <h2>Редагування фільму</h2>
+  
+  <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)" class="movie-form">
+    
+    <!-- Приховане поле для ID -->
+    <input type="hidden" name="id" [(ngModel)]="movie()!.Id">
+
+    <!-- Назва -->
+    <div class="form-group">
+      <label for="title">Назва фільму:</label>
+      <input 
+        id="title" 
+        type="text" 
+        name="title" 
+        [(ngModel)]="movie()!.Title" 
+        required 
+        #titleInput="ngModel">
+    </div>
+
+    <div class="form-row">
+      <!-- Режисер -->
+      <div class="form-group">
+        <label for="director">Режисер:</label>
+        <input 
+          id="director" 
+          type="text" 
+          name="director" 
+          [(ngModel)]="movie()!.Director" 
+          required>
+      </div>
+
+      <!-- Тривалість -->
+      <div class="form-group">
+        <label for="runtime">Тривалість:</label>
+        <input 
+          id="runtime" 
+          type="text" 
+          name="runtime" 
+          [(ngModel)]="movie()!.Runtime" 
+          placeholder="наприклад, 120 хв" 
+          required>
+      </div>
+    </div>
+
+    <!-- Посилання на постер (photoPath) -->
+    <div class="form-group">
+      <label for="photoPath">Посилання на постер (photoPath):</label>
+      <input 
+        id="photoPath" 
+        type="url" 
+        name="photoPath" 
+        [(ngModel)]="movie()!.PhotoPath" 
+        required>
+    </div>
+
+    <!-- Опис -->
+    <div class="form-group">
+      <label for="description">Опис фільму:</label>
+      <textarea 
+        id="description" 
+        name="description" 
+        rows="6" 
+        [(ngModel)]="movie()!.Description" 
+        required></textarea>
+    </div>
+
+    <!-- Дії -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        Скасувати
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="movieForm.invalid">
+        Зберегти зміни
+      </button>
+    </div>
+
+  </form>
+</div>

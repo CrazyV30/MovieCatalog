@@ -1,18 +1,79 @@
-<div class="register-page">
-  <div class="register-card">
-    <h2 class="register-title">REGISTER</h2>
-
-    <form class="register-form" #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
-      <input type="text" [(ngModel)]="userData.Username" name="Username" placeholder="Username" class="input-field" required>
-      <input type="text" [(ngModel)]="userData.Surname" name="Surname" placeholder="Surname" class="input-field" required>
-      <input type="email" [(ngModel)]="userData.Email" name="Email" placeholder="Email" class="input-field" required>
-      <input type="password" [(ngModel)]="userData.Password" name="Password" placeholder="Password" class="input-field" required>
-      <input type="password" [(ngModel)]="userData.ConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" class="input-field" required>
-      
-      <div class="form-actions">
-        <input type="submit" class="btn primary-btn" value="Sign Up">
-        <button type="button" class="btn secondary-btn" routerLink="/">Back to Login</button>
+<div class="auth-card">
+  <h2>Реєстрація</h2>
+  
+  <form #regForm="ngForm" (ngSubmit)="onRegister(regForm)" class="auth-form">
+    
+    <!-- Ім'я та Прізвище в один рядок -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="username">Ім'я (Username):</label>
+        <input 
+          id="username" 
+          type="text" 
+          name="Username" 
+          [(ngModel)]="userData.Username" 
+          placeholder="Введіть ім'я"
+          required>
       </div>
-    </form>
-  </div> 
+
+      <div class="form-group">
+        <label for="surname">Прізвище (Surname):</label>
+        <input 
+          id="surname" 
+          type="text" 
+          name="Surname" 
+          [(ngModel)]="userData.Surname" 
+          placeholder="Введіть прізвище"
+          required>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Електронна пошта (Email):</label>
+      <input 
+        id="email" 
+        type="email" 
+        name="Email" 
+        [(ngModel)]="userData.Email" 
+        placeholder="example@mail.com"
+        email
+        required>
+    </div>
+
+    <!-- Пароль та Підтвердження пароля -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="password">Пароль:</label>
+        <input 
+          id="password" 
+          type="password" 
+          name="Password" 
+          [(ngModel)]="userData.Password" 
+          placeholder="••••••••"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Підтвердження пароля:</label>
+        <input 
+          id="confirmPassword" 
+          type="password" 
+          name="ConfirmPassword" 
+          [(ngModel)]="userData.ConfirmPassword" 
+          placeholder="••••••••"
+          required>
+      </div>
+    </div>
+
+    <!-- Кнопка відправки -->
+    <button type="submit" class="btn btn-primary btn-full" [disabled]="regForm.invalid">
+      Зареєструватися
+    </button>
+  </form>
+
+  <div class="auth-footer">
+    <span>Вже є акаунт?</span>
+    <a (click)="toLogin()" class="auth-link">Увійти</a>
+  </div>
 </div>

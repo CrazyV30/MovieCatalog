@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+/* Контейнер форми */
+.form-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--border-radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.form-card h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.movie-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Рядок з двома колонками (Режисер + Тривалість) */
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+/* Кнопки дій внизу форми */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}

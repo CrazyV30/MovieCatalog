@@ -296,3 +296,4 @@ D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10.0\backEnd.pdb
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10.0\backEnd.genruntimeconfig.cache
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10.0\ref\backEnd.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10.0\backEnd.sourcelink.json

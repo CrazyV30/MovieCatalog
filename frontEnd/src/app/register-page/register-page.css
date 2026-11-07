@@ -1,31 +1,62 @@
-.register-page {
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  min-height: 80vh;
 }
 
-.register-card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e5e7eb;
-  padding: 40px;
+.auth-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--border-radius-lg);
+  padding: 35px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
   width: 100%;
-  max-width: 450px; 
+  max-width: 480px;
 }
 
-.register-title {
+.auth-card h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
   text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 24px;
-  color: #111827;
 }
 
-.register-form {
+.auth-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.auth-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-link {
+  color: var(--accent-primary);
+  margin-left: 5px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.auth-link:hover {
+  color: var(--accent-primary-hover);
+}
+
+@media (max-width: 576px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
 }

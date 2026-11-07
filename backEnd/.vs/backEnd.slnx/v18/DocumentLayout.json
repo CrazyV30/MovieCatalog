@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\dtos\\moviedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\dtos\\moviedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\contracts\\createmovierequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +42,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Movie.cs",
               "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Models\\Movie.cs",
               "RelativeDocumentMoniker": "backEnd\\Models\\Movie.cs",
@@ -54,16 +58,11 @@
               "RelativeToolTip": "backEnd\\Models\\Movie.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-07T07:11:50.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2026-11-07T07:11:50.355Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MovieService.cs",
               "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Services\\MovieService.cs",
               "RelativeDocumentMoniker": "backEnd\\Services\\MovieService.cs",
@@ -76,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MovieRepository.cs",
               "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Repository\\MovieRepository.cs",
               "RelativeDocumentMoniker": "backEnd\\Repository\\MovieRepository.cs",
@@ -84,8 +83,7 @@
               "RelativeToolTip": "backEnd\\Repository\\MovieRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-04T10:48:29.009Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-04T10:48:29.009Z"
             },
             {
               "$type": "Document",
@@ -97,8 +95,7 @@
               "RelativeToolTip": "backEnd\\Contracts\\MovieResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-01T17:14:57.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-01T17:14:57.094Z"
             },
             {
               "$type": "Document",
@@ -110,8 +107,7 @@
               "RelativeToolTip": "backEnd\\Contracts\\UpdateMovieRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-01T17:14:42.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-01T17:14:42.273Z"
             },
             {
               "$type": "Document",
@@ -123,12 +119,11 @@
               "RelativeToolTip": "backEnd\\Contracts\\CreateMovieRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-01T17:14:27.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-01T17:14:27.747Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MovieController.cs",
               "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Controllers\\MovieController.cs",
               "RelativeDocumentMoniker": "backEnd\\Controllers\\MovieController.cs",
@@ -141,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MovieDTO.cs",
               "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\DTOs\\MovieDTO.cs",
               "RelativeDocumentMoniker": "backEnd\\DTOs\\MovieDTO.cs",
@@ -149,8 +144,7 @@
               "RelativeToolTip": "backEnd\\DTOs\\MovieDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-01T13:27:20.614Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-01T13:27:20.614Z"
             }
           ]
         }

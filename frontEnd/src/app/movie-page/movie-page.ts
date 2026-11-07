@@ -1,8 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { Movie } from '../Models/Movie';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MovieShow } from '../Models/MovieShow';
+import { MovieDisplay } from '../Models/MovieDisplay';
 
 @Component({
   imports: [],
@@ -11,11 +10,11 @@ import { MovieShow } from '../Models/MovieShow';
   templateUrl: './movie-page.html',
 })
 export class MoviePage {
-  movies = signal<MovieShow[]>([]);
+  movies = signal<MovieDisplay[]>([]);
   httpUrl:string = "https://localhost:7098/api/Movie";
   constructor(private http: HttpClient,private router: Router) {
-    this.http.get<MovieShow[]>(this.httpUrl).subscribe((data) => {
-      this.movies.set(data as MovieShow[]);
+    this.http.get<MovieDisplay[]>(this.httpUrl).subscribe((data) => {
+      this.movies.set(data as MovieDisplay[]);
     });
   }
   onAddMovie() {
@@ -29,4 +28,7 @@ export class MoviePage {
   logout() {
     this.router.navigate(['/']);
   }  
+  viewMovieDetails(id:number) {
+    this.router.navigate(['/movie', id]);
+  }
 }

@@ -42,4 +42,7 @@ export class RegisterPage {
       console.log('Form is invalid');
     }
   }
+  toLogin() {
+    this.router.navigate(['/']);
+  }
 }

@@ -1,29 +1,73 @@
-<div class="add-film-page">
-  <div class="add-film-card">
-    <h2 class="add-film-title">ADD NEW FILM</h2>
+<div class="form-card">
+  <h2>Додати новий фільм</h2>
+  
+  <form #addForm="ngForm" (ngSubmit)="onAddMovie(addForm)" class="movie-form">
     
-    <form class="add-film-form" method="post" #addFilmForm="ngForm" (ngSubmit)="onAddMovie(addFilmForm)">
-      <!-- Назва фільму -->
-      <input type="text" [(ngModel)]="movieData.Title" name="Title" placeholder="Film Title" class="input-field" required>
-      
-      <!-- Рядок з двома полями для економії місця -->
-      <div class="form-row">
-        <input type="text" [(ngModel)]="movieData.Runtime" name="Runtime" placeholder="Runtime" class="input-field" required>
-        <input type="text" [(ngModel)]="movieData.Director" name="Director" placeholder="Director" class="input-field" required>
+    <div class="form-group">
+      <label for="title">Назва фільму:</label>
+      <input 
+        id="title" 
+        type="text" 
+        name="title" 
+        [(ngModel)]="movieData.Title" 
+        placeholder="Введіть назву фільму"
+        required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="director">Режисер:</label>
+        <input 
+          id="director" 
+          type="text" 
+          name="director" 
+          [(ngModel)]="movieData.Director" 
+          placeholder="Ім'я режисера"
+          required>
       </div>
-      
-      <!-- Посилання на картинку -->
-      <input type="url" [(ngModel)]="movieData.PhotoPath" name="PhotoPath" placeholder="Poster Image URL" class="input-field" required>
-      
-      <!-- Опис фільму -->
-      <textarea [(ngModel)]="movieData.Description" name="Description" placeholder="Film Description..." class="input-field textarea-field" rows="4" required></textarea>
-      
-      <!-- Кнопки -->
-      <div class="form-actions">
-        <button type="submit" class="btn primary-btn">Save Film</button>
-        <!-- Кнопка скасування повертає до каталогу -->
-        <button type="button" class="btn secondary-btn" routerLink="/catalog">Cancel</button>
+
+      <div class="form-group">
+        <label for="runtime">Тривалість:</label>
+        <input 
+          id="runtime" 
+          type="text" 
+          name="runtime" 
+          [(ngModel)]="movieData.Runtime" 
+          placeholder="наприклад, 120 хв" 
+          required>
       </div>
-    </form>
-  </div>
+    </div>
+
+    <div class="form-group">
+      <label for="photoPath">Посилання на постер (photoPath):</label>
+      <input 
+        id="photoPath" 
+        type="url" 
+        name="photoPath" 
+        [(ngModel)]="movieData.PhotoPath" 
+        placeholder="https://example.com/poster.jpg"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Опис фільму:</label>
+      <textarea 
+        id="description" 
+        name="description" 
+        rows="5" 
+        [(ngModel)]="movieData.Description" 
+        placeholder="Короткий опис сюжену..."
+        required></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        Скасувати
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">
+        Створити фільм
+      </button>
+    </div>
+
+  </form>
 </div>

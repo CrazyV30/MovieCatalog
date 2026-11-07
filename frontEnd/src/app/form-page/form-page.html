@@ -1,14 +1,34 @@
-<div class="login-page">
-  <div class="login-card">
-    <h2 class="login-title">LOGIN</h2>
-    <form class="login-form" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-      <input type="text" [(ngModel)]="userLogin.Email" name="Email" placeholder="Email..." class="input-field" required>
-      <input type="password" [(ngModel)]="userLogin.Password" name="Password" placeholder="Password..." class="input-field" required>
-       
-      <div class="form-actions">
-        <button type="submit" class="btn login-btn">Login</button>
-        <button type="button" class="btn register-btn" (click)="toRegister()">Register</button>
-      </div>
-    </form>
+<div class="auth-card">
+  <h2>Вхід в систему</h2>
+  
+  <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" class="auth-form">
+    <div class="form-group">
+      <label for="username">Логін / Email:</label>
+      <input 
+        id="username" 
+        type="text" 
+        name="email" 
+        [(ngModel)]="userLogin.Email" 
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Пароль:</label>
+      <input 
+        id="password" 
+        type="password" 
+        name="password" 
+        [(ngModel)]="userLogin.Password" 
+        required>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full" [disabled]="loginForm.invalid">
+      Увійти
+    </button>
+  </form>
+
+  <div class="auth-footer">
+    <span>Ще не маєте акаунту?</span>
+    <a (click)="toRegister()" class="auth-link">Зареєструватися</a>
   </div>
 </div>

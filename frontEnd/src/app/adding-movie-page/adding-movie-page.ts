@@ -41,4 +41,7 @@ export class AddingMoviePage {
       console.log('Form is invalid');
     }
   }
+  cancel() {
+    this.router.navigate(['/catalog']);
+  }
 }

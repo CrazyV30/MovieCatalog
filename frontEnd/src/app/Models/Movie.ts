@@ -1,8 +1,7 @@
 export interface Movie {
-  id: number;
-  Title: string;
-  Description: string;
-  Director: string;
-  Runtime: string;
-  PhotoPath: string;
+    Title: string;
+    Description: string;
+    PhotoPath: string;
+    Runtime: string;
+    Director: string;
 }
