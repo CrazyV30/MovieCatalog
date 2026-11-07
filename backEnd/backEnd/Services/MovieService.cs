@@ -9,16 +9,12 @@ namespace backEnd.Services
         public enum MovieResult
         {
             Ok,
-            TitleError,
-            DescriptionError,
-            UrlError,
-            RuntimeError,
-            DirectorError,
             NullMovieError,
             NotFoundError
         }
         public List<MovieDTO> GetAllMovies() => _movieRepository.GetAll().Select(m => new MovieDTO
-        {
+        {            
+            Id = m.Id,
             Title = m.Title,
             Description = m.Description,
             PhotoPath = m.PhotoPath,
@@ -31,6 +27,21 @@ namespace backEnd.Services
             if (movie == null) return null;
             return new MovieDTO
             {
+                Id = movie.Id,
+                Title = movie.Title,
+                Description = movie.Description,
+                PhotoPath = movie.PhotoPath,
+                Runtime = movie.Runtime,
+                Director = movie.Director
+            };
+        }
+        public MovieDTO? GetMovieById(int id)
+        {
+            var movie = _movieRepository.GetById(id);
+            if (movie == null) return null;
+            return new MovieDTO
+            {
+                Id = movie.Id,
                 Title = movie.Title,
                 Description = movie.Description,
                 PhotoPath = movie.PhotoPath,
@@ -40,16 +51,11 @@ namespace backEnd.Services
         }
         public MovieResult AddMovie(MovieDTO movieDTO)
         {
-            if(string.IsNullOrEmpty(movieDTO.Title)) return MovieResult.TitleError;
-            else if (string.IsNullOrEmpty(movieDTO.Description))  return MovieResult.DescriptionError;
-            else if (string.IsNullOrEmpty(movieDTO.PhotoPath)) return MovieResult.UrlError;
-            else if (string.IsNullOrEmpty(movieDTO.Runtime)) return MovieResult.RuntimeError;            
-            else if (string.IsNullOrEmpty(movieDTO.Director))  return MovieResult.DirectorError;
-            else if (_movieRepository.GetByName(movieDTO.Title) != null) return MovieResult.TitleError;
-            else if (movieDTO == null) return MovieResult.NullMovieError;
+            if (movieDTO == null) return MovieResult.NullMovieError;
 
             var movie = new Movie
             {
+                Id = movieDTO.Id,
                 Title = movieDTO.Title,
                 Description = movieDTO.Description,
                 PhotoPath = movieDTO.PhotoPath,
@@ -61,8 +67,20 @@ namespace backEnd.Services
         }
         public MovieResult DeleteMovie(MovieDTO movieDTO)
         {
-            var movie = _movieRepository.GetByName(movieDTO.Title);
+            var movie = _movieRepository.GetById(movieDTO.Id);
             _movieRepository.Remove(movie!);
+            return MovieResult.Ok;
+        }
+        public MovieResult UpdateMovie(MovieDTO movieDTO)
+        {
+            var movie = _movieRepository.GetById(movieDTO.Id);
+            if (movie == null) return MovieResult.NotFoundError;
+            movie.Title = movieDTO.Title;
+            movie.Description = movieDTO.Description;
+            movie.PhotoPath = movieDTO.PhotoPath;
+            movie.Runtime = movieDTO.Runtime;
+            movie.Director = movieDTO.Director;
+            _movieRepository.Update(movie);
             return MovieResult.Ok;
         }
 

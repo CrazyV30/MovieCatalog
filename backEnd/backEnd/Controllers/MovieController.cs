@@ -1,4 +1,5 @@
-﻿using backEnd.DTOs;
+﻿using backEnd.Contracts;
+using backEnd.DTOs;
 using backEnd.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,53 +13,100 @@ namespace backEnd.Controllers
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult GetAllMovies()
+        public ActionResult<List<MovieResponse>> GetAllMovies()
         {
-            var movies = _movieService.GetAllMovies();
+            var movies = _movieService.GetAllMovies().Select(m => new MovieResponse
+            {
+                Id = m.Id,
+                Title = m.Title,
+                Description = m.Description,
+                PhotoPath = m.PhotoPath,
+                Runtime = m.Runtime,
+                Director = m.Director
+            }).ToList();
             return Ok(movies);
         }
-        [HttpGet("{name}")]
+        [HttpGet("byName/{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult GetMovieByName(string name)
+        public ActionResult<MovieResponse> GetMovieByName([FromRoute] string name)
         {
             var movie = _movieService.GetMovieByName(name);
             if (movie == null) return NotFound();
-            return Ok(movie);
+            var res = new MovieResponse
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                Description = movie.Description,
+                PhotoPath = movie.PhotoPath,
+                Runtime = movie.Runtime,
+                Director = movie.Director
+            };
+            return Ok(res);
+        }
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<MovieResponse> GetMovieById([FromRoute] int id)
+        {
+            var movie = _movieService.GetMovieById(id);
+            if (movie == null) return NotFound();
+            var res = new MovieResponse
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                Description = movie.Description,
+                PhotoPath = movie.PhotoPath,
+                Runtime = movie.Runtime,
+                Director = movie.Director
+            };
+            return Ok(res);
         }
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult AddMovie(MovieDTO movieDTO)
+        public ActionResult AddMovie([FromBody] CreateMovieRequest movieRequest)
         {
-            var movie = _movieService.AddMovie(movieDTO);
-            switch(movie)
+            var dto = new MovieDTO
             {
-                case MovieResult.TitleError:
-                    return BadRequest("Title is required and cannot be repeated.");
-                case MovieResult.DescriptionError:
-                    return BadRequest("Description is required.");
-                case MovieResult.UrlError:
-                    return BadRequest("Photo URL is required.");
-                case MovieResult.RuntimeError:
-                    return BadRequest("Runtime is required.");
-                case MovieResult.DirectorError:
-                    return BadRequest("Director is required.");
-                case MovieResult.NullMovieError:
-                    return BadRequest("Movie cannot be null.");
-            }
-            return CreatedAtAction(nameof(GetMovieByName), new { name = movieDTO.Title }, movieDTO);
+                Title = movieRequest.Title,
+                Description = movieRequest.Description,
+                PhotoPath = movieRequest.PhotoPath,
+                Runtime = movieRequest.Runtime,
+                Director = movieRequest.Director
+            };
+            var movie = _movieService.AddMovie(dto);
+            if (movie == MovieResult.NullMovieError) return BadRequest("Movie cannot be null.");
+            return CreatedAtAction(nameof(GetMovieByName), new { name = movieRequest.Title }, movieRequest);
         }
-        [HttpDelete("{name}")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult DeleteMovie(string name)
+        public ActionResult DeleteMovie([FromRoute] int id)
         {
-            var movie = _movieService.GetMovieByName(name);
+            var movie = _movieService.GetMovieById(id);
             if (movie == null) return NotFound();
             _movieService.DeleteMovie(movie);
             return NoContent();
         }
 
+        [HttpPut("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult UpdateMovie([FromRoute] int id, [FromBody] UpdateMovieRequest movieDTO)
+        {
+            if (_movieService.GetMovieById(id) == null) return NotFound();
+            var movie = new MovieDTO
+            {
+                Id = id,
+                Title = movieDTO.Title,
+                Description = movieDTO.Description,
+                PhotoPath = movieDTO.PhotoPath,
+                Runtime = movieDTO.Runtime,
+                Director = movieDTO.Director
+            };
+            var res = _movieService.UpdateMovie(movie);
+            return Ok(movie);
+        }
     }
 }

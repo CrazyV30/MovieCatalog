@@ -5,7 +5,8 @@
         bool Add(T entity);
         bool Remove(T entity);
         List<T> GetAll();
-        T? GetByName(string name);
-        bool ExistName(string name);
+        T? GetById(int id);
+        bool ExistId(int id);
+        bool Update(T entity); 
     }
 }
