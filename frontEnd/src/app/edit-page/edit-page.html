@@ -54,7 +54,14 @@
         [(ngModel)]="movie()!.photoPath" 
         required>
     </div>
-
+    <div class="form-group">
+      <label for="videoPath">Посилання на фільм:</label>
+      <input 
+        id="videoPath" type="url" name="MoviePath" [value]="movie()?.moviePath"
+        [(ngModel)]="movie()!.moviePath" 
+        placeholder="https://example.com/watch?v=..." 
+        required>
+    </div>
     <!-- Опис -->
     <div class="form-group">
       <label for="description">Опис фільму:</label>

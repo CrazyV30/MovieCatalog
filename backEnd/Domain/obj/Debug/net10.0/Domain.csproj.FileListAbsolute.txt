@@ -1,0 +1,13 @@
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\bin\Debug\net10.0\Domain.deps.json
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\bin\Debug\net10.0\Domain.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\bin\Debug\net10.0\Domain.pdb
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.AssemblyInfoInputs.cache
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.AssemblyInfo.cs
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.csproj.CoreCompileInputs.cache
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.sourcelink.json
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\refint\Domain.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.pdb
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\ref\Domain.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\Domain\obj\Debug\net10.0\Domain.csproj.Up2Date

@@ -6,4 +6,5 @@ export interface MovieDisplay {
     runtime: string;
     director: string;
     releaseYear:number;
+    moviePath:string;
 }

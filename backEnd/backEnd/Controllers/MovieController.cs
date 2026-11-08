@@ -1,15 +1,16 @@
 ﻿using backEnd.Contracts;
-using backEnd.DTOs;
-using backEnd.Services;
+using Bll.DTOs;
+using Bll.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static backEnd.Services.MovieService;
+using static Bll.Services.MovieService;
 
 namespace backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController(MovieService _movieService) : ControllerBase
+    public class MovieController(MovieService _movieService, IValidator<CreateMovieRequest> _validator, IValidator<UpdateMovieRequest> _validatorUpdate) : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -23,7 +24,8 @@ namespace backEnd.Controllers
                 PhotoPath = m.PhotoPath,
                 Runtime = m.Runtime,
                 Director = m.Director,
-                ReleaseYear = m.ReleaseYear
+                ReleaseYear = m.ReleaseYear,
+                MoviePath = m.MoviePath
             }).ToList();
             return Ok(movies);
         }
@@ -42,7 +44,8 @@ namespace backEnd.Controllers
                 PhotoPath = movie.PhotoPath,
                 Runtime = movie.Runtime,
                 Director = movie.Director,
-                ReleaseYear = movie.ReleaseYear
+                ReleaseYear = movie.ReleaseYear,
+                MoviePath = movie.MoviePath
             };
             return Ok(res);
         }
@@ -61,7 +64,8 @@ namespace backEnd.Controllers
                 PhotoPath = movie.PhotoPath,
                 Runtime = movie.Runtime,
                 Director = movie.Director,
-                ReleaseYear = movie.ReleaseYear
+                ReleaseYear = movie.ReleaseYear,
+                MoviePath = movie.MoviePath
             };
             return Ok(res);
         }
@@ -70,6 +74,8 @@ namespace backEnd.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult AddMovie([FromBody] CreateMovieRequest movieRequest)
         {
+            var res = _validator.Validate(movieRequest);
+            if (!res.IsValid) return BadRequest(res.Errors);
             var dto = new MovieDTO
             {
                 Title = movieRequest.Title,
@@ -77,7 +83,8 @@ namespace backEnd.Controllers
                 PhotoPath = movieRequest.PhotoPath,
                 Runtime = movieRequest.Runtime,
                 Director = movieRequest.Director,
-                ReleaseYear = movieRequest.ReleaseYear
+                ReleaseYear = movieRequest.ReleaseYear,
+                MoviePath = movieRequest.MoviePath
             };
             var movie = _movieService.AddMovie(dto);
             if (movie == MovieResult.NullMovieError) return BadRequest("Movie cannot be null.");
@@ -95,10 +102,13 @@ namespace backEnd.Controllers
         }
 
         [HttpPut("{id:int}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateMovie([FromRoute] int id, [FromBody] UpdateMovieRequest movieDTO)
         {
+            var res = _validatorUpdate.Validate(movieDTO);
+            if (!res.IsValid) return BadRequest(res.Errors);
             if (_movieService.GetMovieById(id) == null) return NotFound();
             var movie = new MovieDTO
             {
@@ -108,10 +118,11 @@ namespace backEnd.Controllers
                 PhotoPath = movieDTO.PhotoPath,
                 Runtime = movieDTO.Runtime,
                 Director = movieDTO.Director,
-                ReleaseYear = movieDTO.ReleaseYear
+                ReleaseYear = movieDTO.ReleaseYear,
+                MoviePath = movieDTO.MoviePath
             };
-            var res = _movieService.UpdateMovie(movie);
-            return Ok(movie);
+            _movieService.UpdateMovie(movie);
+            return NoContent();
         }
     }
 }

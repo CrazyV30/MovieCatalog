@@ -1,6 +1,7 @@
 ﻿using backEnd.Contracts;
-using backEnd.DTOs;
-using backEnd.Services;
+using Bll.DTOs;
+using Bll.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(UserService _userService) : ControllerBase
+    public class UserController(UserService _userService, IValidator<RegisterRequest> _validator) : ControllerBase
     {
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -23,8 +24,9 @@ namespace backEnd.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Register([FromBody] RegisterRequest userRegister)
         {
-            var result = _userService.Register(new UserRegisterDTO()
-            {
+            var res = _validator.Validate(userRegister);
+            if (!res.IsValid) return BadRequest(res.Errors);
+            _userService.Register(new UserRegisterDTO() {
                 Email = userRegister.Email,
                 Username = userRegister.Username,
                 Surname = userRegister.Surname,

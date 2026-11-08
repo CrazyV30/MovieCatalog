@@ -6,4 +6,5 @@ export interface MovieUpdate {
     Runtime: string;
     Director: string;
     ReleaseYear:number;
+    MoviePath:string;
 }

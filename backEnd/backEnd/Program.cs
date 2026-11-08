@@ -1,8 +1,8 @@
 
 using backEnd.Context;
-using backEnd.Models;
-using backEnd.Repository;
-using backEnd.Services;
+using Domain.Models;
+using Dll.Repository;
+using Bll.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace backEnd

@@ -46,7 +46,7 @@
     </div>
 
     <div class="form-group">
-      <label for="photoPath">Посилання на постер (photoPath):</label>
+      <label for="photoPath">Посилання на постер:</label>
       <input 
         id="photoPath" 
         type="url" 
@@ -55,7 +55,16 @@
         placeholder="https://example.com/poster.jpg"
         required>
     </div>
-
+    <div class="form-group">
+      <label for="videoPath">Посилання на фільм (videoPath):</label>
+      <input 
+        id="videoPath" 
+        type="url" 
+        name="videoPath" 
+        [(ngModel)]="movieData.MoviePath" 
+        placeholder="https://example.com/watch?v=..." 
+        required>
+    </div>
     <div class="form-group">
       <label for="description">Опис фільму:</label>
       <textarea 

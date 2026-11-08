@@ -297,3 +297,11 @@ D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10.0\backEnd.genruntimeconfig.cache
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10.0\ref\backEnd.dll
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\obj\Debug\net10.0\backEnd.sourcelink.json
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\FluentValidation.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\BLL.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\DLL.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\Domain.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\BLL.pdb
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\DLL.pdb
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\Domain.pdb

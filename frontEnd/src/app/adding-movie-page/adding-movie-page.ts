@@ -17,7 +17,8 @@ export class AddingMoviePage {
     PhotoPath: '',
     Runtime: '',
     Director: '',
-    ReleaseYear: 0
+    ReleaseYear: 0,
+    MoviePath:''
   };
   constructor(
     private http: HttpClient, 

@@ -5,4 +5,5 @@ export interface Movie {
     Runtime: string;
     Director: string;
     ReleaseYear:number;
+    MoviePath:string;
 }

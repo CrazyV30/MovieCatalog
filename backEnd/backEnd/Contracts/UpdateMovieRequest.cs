@@ -16,6 +16,9 @@ namespace backEnd.Contracts
         [Url(ErrorMessage = "PhotoPath must be a valid URL.")]
         public string PhotoPath { get; set; } = string.Empty;
         [Required]
+        [Url(ErrorMessage = "PhotoPath must be a valid URL.")]
+        public string MoviePath { get; set; } = string.Empty;
+        [Required]
         [RegularExpression(@"^0?[012]:[0-5][0-9]$", ErrorMessage = "Runtime must be in the format 'X:YY', where X and Y are numbers.")]
         public string Runtime { get; set; } = string.Empty;
         [Required]

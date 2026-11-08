@@ -1,3 +1,6 @@
 <Solution>
   <Project Path="backEnd/backEnd.csproj" />
+  <Project Path="BLL/BLL.csproj" Id="ac716ede-20d2-4bb3-8dcf-48c8363e92c6" />
+  <Project Path="DLL/DLL.csproj" Id="91c968a4-8df6-4b3f-85a8-6faddc762c0c" />
+  <Project Path="Domain/Domain.csproj" Id="97200921-0cc2-41e8-90a6-9891a05fdf63" />
 </Solution>
