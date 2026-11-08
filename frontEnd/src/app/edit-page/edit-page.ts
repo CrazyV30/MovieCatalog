@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Movie } from '../Models/Movie';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieUpdate } from '../Models/MovieUpdate';
+import { MovieDisplay } from '../Models/MovieDisplay';
 
 @Component({
   imports: [FormsModule, CommonModule],
@@ -13,32 +13,30 @@ import { MovieUpdate } from '../Models/MovieUpdate';
   templateUrl: './edit-page.html',
 })
 export class EditPage {
-  movie = signal<MovieUpdate|undefined>(undefined);
+  movie = signal<MovieDisplay|undefined>(undefined);
   httpUrl:string = "https://localhost:7098/api/Movie";
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  ngOnInit(){
     const movieId = this.route.snapshot.paramMap.get('id');
-    if (movieId) {
-      this.http.get<MovieUpdate>(this.httpUrl + '/' + movieId).subscribe((data) => {
-        this.movie.set(data as MovieUpdate);
-      });
-    }
+        if (movieId) {
+          this.http.get<MovieDisplay>(this.httpUrl + '/' + movieId).subscribe((data) => {
+            this.movie.set(data as MovieDisplay);
+          });
+        }
   }
   cancel(){
-    this.router.navigate(['/movie', this.movie()!.Id]);
+    this.router.navigate(['/movie', this.movie()?.id]);
   }
   onSubmit(form: any) {
     if (this.movie()) {
-      const updatedMovie: MovieUpdate = {
-        Id: this.movie()!.Id,
-        Title: form.value.title,
-        Description: form.value.description,
-        PhotoPath: form.value.photoPath,
-        Runtime: form.value.runtime,
-        Director: form.value.director
-      };
-      this.http.put(this.httpUrl + '/' + updatedMovie.Id, updatedMovie).subscribe(() => {
-        this.router.navigate(['/movie', updatedMovie.Id]);
+      const updatedMovie: MovieUpdate = form.value;
+      this.http.put(this.httpUrl + '/' + this.movie()?.id, updatedMovie).subscribe({
+        error: (err) => {
+          console.error('Помилка при оновленні:', err);
+        }
       });
+      
+      this.router.navigate(['/movie', updatedMovie.Id]);
     }
   }
 }

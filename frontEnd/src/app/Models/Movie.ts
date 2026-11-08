@@ -4,4 +4,5 @@ export interface Movie {
     PhotoPath: string;
     Runtime: string;
     Director: string;
+    ReleaseYear:number;
 }

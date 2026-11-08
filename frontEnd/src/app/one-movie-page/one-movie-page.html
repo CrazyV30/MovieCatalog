@@ -1,35 +1,34 @@
 <div class="movie-details-container">
-  <!-- Навігація назад -->
-  <div class="navigation-bar">
-    <button type="button" class="btn btn-secondary" (click)="goBack()">
-      ← Повернутися назад
-    </button>
-  </div>
 
   <div class="movie-details-card">
     <!-- Постер фільму -->
     <div class="poster-container">
-      <img [src]="movie()[0]?.photoPath" [alt]="movie()[0]?.title" class="movie-poster">
+      <img [src]="movie()?.photoPath" [alt]="movie()?.title" class="movie-poster">
     </div>
 
     <!-- Інформація про фільм -->
     <div class="movie-info">
       <div class="header-actions">
-        <h1 class="movie-title">{{ movie()[0]?.title }}</h1>
+        <h1 class="movie-title">{{ movie()?.title }}</h1>
         <!-- Кнопка редагування -->
-        <button type="button" class="btn btn-primary" (click)="edit(movie()[0]!.id)">
-          Редагувати
-        </button>
+        @if (authService.currentUser()) {
+          <div class="action-buttons">
+            <button type="button" class="btn btn-primary" (click)="edit(movie()!.id)">
+              Редагувати
+            </button>
+          </div>
+        }
       </div>
 
       <div class="meta-data">
-        <span class="badge">Тривалість: {{ movie()[0]?.runtime }}</span>
-        <span class="director">Режисер: <strong>{{ movie()[0]?.director }}</strong></span>
+        <span class="badge">Рік: {{ movie()?.releaseYear }}</span>
+        <span class="badge">Тривалість: {{ movie()?.runtime }}</span>
+        <span class="director">Режисер: <strong>{{ movie()?.director }}</strong></span>
       </div>
 
       <div class="description-section">
         <h3>Опис фільму</h3>
-        <p class="movie-description">{{ movie()[0]?.description }}</p>
+        <p class="movie-description">{{ movie()?.description }}</p>
       </div>
     </div>
   </div>

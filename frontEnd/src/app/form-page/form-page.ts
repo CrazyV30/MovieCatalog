@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from '../Models/UserLogin';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../Services/auth-service';
 @Component({
   imports: [FormsModule],
   selector: 'app-form-page',
@@ -12,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FormPage {
   _httpUrl:string = "https://localhost:7098/api/User";
+  authService = inject(AuthService);
   constructor(
     private http: HttpClient, 
     private router: Router,
@@ -28,7 +30,8 @@ export class FormPage {
         (response) => {
           console.log('Login successful:', response);
           this.toastr.success('Login successful!', 'Success');
-          this.router.navigate(['/catalog']);
+          this.authService.login(form.value.email);
+          this.router.navigate(['/']);
         },
         (error) => {
           console.error('Login failed:', error);

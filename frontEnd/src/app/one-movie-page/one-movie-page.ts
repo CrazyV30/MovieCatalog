@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDisplay } from '../Models/MovieDisplay';
+import { AuthService } from '../Services/auth-service';
 
 @Component({
   imports: [FormsModule, CommonModule],
@@ -12,14 +13,15 @@ import { MovieDisplay } from '../Models/MovieDisplay';
   templateUrl: './one-movie-page.html',
 })
 export class OneMoviePage {
-  movie = signal<MovieDisplay[]>([]);
+  authService = inject(AuthService);
+  movie = signal<MovieDisplay|undefined>(undefined);
   route = inject(ActivatedRoute);
   httpUrl:string = "https://localhost:7098/api/Movie";
   constructor(private http: HttpClient,private router: Router) {
     const movieId = this.route.snapshot.paramMap.get('id');
     if (movieId) {
-      this.http.get<MovieDisplay[]>(this.httpUrl + '/' + movieId).subscribe((data) => {
-        this.movie.set(data as MovieDisplay[]);
+      this.http.get<MovieDisplay>(this.httpUrl + '/' + movieId).subscribe((data) => {
+        this.movie.set(data as MovieDisplay);
       });
     }
   }

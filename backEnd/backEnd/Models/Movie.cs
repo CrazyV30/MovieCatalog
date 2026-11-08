@@ -8,5 +8,6 @@
         public string PhotoPath { get; set; } = string.Empty;
         public string Runtime { get; set; } = string.Empty;
         public string Director { get; set; } = string.Empty;
+        public int ReleaseYear { get; set; }
     }
 }

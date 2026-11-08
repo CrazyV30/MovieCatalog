@@ -5,4 +5,5 @@ export interface MovieDisplay {
     photoPath: string;
     runtime: string;
     director: string;
+    releaseYear:number;
 }

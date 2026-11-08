@@ -16,10 +16,12 @@ namespace backEnd.Contracts
         [Url(ErrorMessage = "PhotoPath must be a valid URL.")]
         public string PhotoPath { get; set; } = string.Empty;
         [Required]
-        [RegularExpression(@"^0[012]:[0-5][0-9]$", ErrorMessage = "Runtime must be in the format '0X:YY', where X and Y are numbers.")]
+        [RegularExpression(@"^0?[012]:[0-5][0-9]$", ErrorMessage = "Runtime must be in the format 'X:YY', where X and Y are numbers.")]
         public string Runtime { get; set; } = string.Empty;
         [Required]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Director must be between 1 and 50 characters.")]
         public string Director { get; set; } = string.Empty;
+        [Required]
+        public int ReleaseYear { get; set; }
     }
 }

@@ -189,6 +189,41 @@
   },
   {
     "ContainingType": "backEnd.Controllers.UserController",
+    "Method": "GetUserByLogin",
+    "RelativePath": "api/User/{login}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "backEnd.Contracts.UserResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "backEnd.Controllers.UserController",
     "Method": "Login",
     "RelativePath": "api/User/login",
     "HttpMethod": "POST",
@@ -197,7 +232,7 @@
     "Parameters": [
       {
         "Name": "userLogin",
-        "Type": "backEnd.DTOs.UserLoginDTO",
+        "Type": "backEnd.Contracts.LoginRequest",
         "IsRequired": true
       }
     ],
@@ -228,7 +263,7 @@
     "Parameters": [
       {
         "Name": "userRegister",
-        "Type": "backEnd.DTOs.UserRegisterDTO",
+        "Type": "backEnd.Contracts.RegisterRequest",
         "IsRequired": true
       }
     ],

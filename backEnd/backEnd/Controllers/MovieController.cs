@@ -22,7 +22,8 @@ namespace backEnd.Controllers
                 Description = m.Description,
                 PhotoPath = m.PhotoPath,
                 Runtime = m.Runtime,
-                Director = m.Director
+                Director = m.Director,
+                ReleaseYear = m.ReleaseYear
             }).ToList();
             return Ok(movies);
         }
@@ -40,7 +41,8 @@ namespace backEnd.Controllers
                 Description = movie.Description,
                 PhotoPath = movie.PhotoPath,
                 Runtime = movie.Runtime,
-                Director = movie.Director
+                Director = movie.Director,
+                ReleaseYear = movie.ReleaseYear
             };
             return Ok(res);
         }
@@ -58,7 +60,8 @@ namespace backEnd.Controllers
                 Description = movie.Description,
                 PhotoPath = movie.PhotoPath,
                 Runtime = movie.Runtime,
-                Director = movie.Director
+                Director = movie.Director,
+                ReleaseYear = movie.ReleaseYear
             };
             return Ok(res);
         }
@@ -73,7 +76,8 @@ namespace backEnd.Controllers
                 Description = movieRequest.Description,
                 PhotoPath = movieRequest.PhotoPath,
                 Runtime = movieRequest.Runtime,
-                Director = movieRequest.Director
+                Director = movieRequest.Director,
+                ReleaseYear = movieRequest.ReleaseYear
             };
             var movie = _movieService.AddMovie(dto);
             if (movie == MovieResult.NullMovieError) return BadRequest("Movie cannot be null.");
@@ -103,7 +107,8 @@ namespace backEnd.Controllers
                 Description = movieDTO.Description,
                 PhotoPath = movieDTO.PhotoPath,
                 Runtime = movieDTO.Runtime,
-                Director = movieDTO.Director
+                Director = movieDTO.Director,
+                ReleaseYear = movieDTO.ReleaseYear
             };
             var res = _movieService.UpdateMovie(movie);
             return Ok(movie);

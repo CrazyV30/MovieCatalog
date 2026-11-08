@@ -34,6 +34,9 @@ namespace backEnd.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Runtime")
                         .IsRequired()
                         .HasColumnType("TEXT");

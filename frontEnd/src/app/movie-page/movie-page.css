@@ -1,7 +1,9 @@
 :host {
   display: block;
 }
-
+.catalog-container{
+  padding: 2rem;
+}
 .catalog-header {
   display: flex;
   justify-content: space-between;
@@ -81,4 +83,45 @@
   text-align: center;
   padding: 40px;
   color: var(--text-muted);
+}
+/* Базовий контейнер постера повинен мати position: relative */
+.card-poster {
+  position: relative;
+}
+
+/* Кругла кнопка видалення */
+.btn-delete-card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: rgba(18, 18, 18, 0.75);
+  color: #ff5252;
+  border: 1px solid rgba(255, 82, 82, 0.5);
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px); /* Ефект розмиття фону під кнопкою */
+  opacity: 0.8;
+  transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+/* Поява кнопки при наведенні на картку */
+.movie-card:hover .btn-delete-card {
+  opacity: 1;
+}
+
+/* Ховер безпосередньо на саму кнопку */
+.btn-delete-card:hover {
+  background-color: #ff5252;
+  color: #ffffff;
+  border-color: #ff5252;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }

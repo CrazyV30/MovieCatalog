@@ -29,7 +29,13 @@ namespace backEnd.Repository
         public bool Update(Movie entity)
         {
             if (!ExistId(entity.Id)) return false;;
-            _context.Entry<Movie>(GetById(entity.Id)!).CurrentValues.SetValues(entity);
+            var movie = _context.Movies.FirstOrDefault(m => entity.Id == m.Id);
+            movie.Title = entity.Title;
+            movie.Description = entity.Description;
+            movie.PhotoPath = entity.PhotoPath;
+            movie.Director = entity.Director;
+            movie.Runtime = entity.Runtime;
+            movie.ReleaseYear = entity.ReleaseYear;
             _context.SaveChanges();
             return true;
         }

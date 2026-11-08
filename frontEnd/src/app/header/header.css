@@ -1,0 +1,85 @@
+.main-header {
+  background-color: var(--bg-surface, #1e1e1e);
+  border-bottom: 1px solid var(--border-color, #333);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 24px;
+  margin-bottom: 1rem;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: var(--text-muted, #a0a0a0);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-primary, #bb86fc);
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-name {
+  color: var(--text-primary, #fff);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.btn-login {
+  background: transparent;
+  color: var(--text-primary, #fff);
+  border: 1px solid var(--border-color, #444);
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-register {
+  background-color: var(--accent-primary, #bb86fc);
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-logout {
+  background-color: var(--accent-error, #cf6679);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}

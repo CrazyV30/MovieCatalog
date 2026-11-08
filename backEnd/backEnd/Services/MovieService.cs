@@ -19,7 +19,8 @@ namespace backEnd.Services
             Description = m.Description,
             PhotoPath = m.PhotoPath,
             Runtime = m.Runtime,
-            Director = m.Director
+            Director = m.Director,
+            ReleaseYear = m.ReleaseYear
         }).ToList();
         public MovieDTO? GetMovieByName(string name)
         {
@@ -32,7 +33,8 @@ namespace backEnd.Services
                 Description = movie.Description,
                 PhotoPath = movie.PhotoPath,
                 Runtime = movie.Runtime,
-                Director = movie.Director
+                Director = movie.Director,
+                ReleaseYear = movie.ReleaseYear
             };
         }
         public MovieDTO? GetMovieById(int id)
@@ -46,7 +48,8 @@ namespace backEnd.Services
                 Description = movie.Description,
                 PhotoPath = movie.PhotoPath,
                 Runtime = movie.Runtime,
-                Director = movie.Director
+                Director = movie.Director,
+                ReleaseYear = movie.ReleaseYear
             };
         }
         public MovieResult AddMovie(MovieDTO movieDTO)
@@ -60,7 +63,8 @@ namespace backEnd.Services
                 Description = movieDTO.Description,
                 PhotoPath = movieDTO.PhotoPath,
                 Runtime = movieDTO.Runtime,
-                Director = movieDTO.Director
+                Director = movieDTO.Director,
+                ReleaseYear = movieDTO.ReleaseYear
             };
             _movieRepository.Add(movie);
             return MovieResult.Ok;
@@ -80,6 +84,7 @@ namespace backEnd.Services
             movie.PhotoPath = movieDTO.PhotoPath;
             movie.Runtime = movieDTO.Runtime;
             movie.Director = movieDTO.Director;
+            movie.ReleaseYear = movieDTO.ReleaseYear;
             _movieRepository.Update(movie);
             return MovieResult.Ok;
         }

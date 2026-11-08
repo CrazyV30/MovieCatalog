@@ -5,4 +5,5 @@ export interface MovieUpdate {
     PhotoPath: string;
     Runtime: string;
     Director: string;
+    ReleaseYear:number;
 }

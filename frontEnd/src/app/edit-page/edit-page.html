@@ -3,19 +3,16 @@
   
   <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)" class="movie-form">
     
-    <!-- Приховане поле для ID -->
-    <input type="hidden" name="id" [(ngModel)]="movie()!.Id">
+    <input type="hidden" name="Id" [value]="movie()?.id" [(ngModel)]="movie()!.id">
 
     <!-- Назва -->
     <div class="form-group">
       <label for="title">Назва фільму:</label>
       <input 
-        id="title" 
-        type="text" 
-        name="title" 
-        [(ngModel)]="movie()!.Title" 
-        required 
-        #titleInput="ngModel">
+        id="title" type="text" name="Title" 
+        [value]="movie()?.title"
+        [(ngModel)]="movie()!.title" 
+        required #titleInput="ngModel">
     </div>
 
     <div class="form-row">
@@ -23,34 +20,38 @@
       <div class="form-group">
         <label for="director">Режисер:</label>
         <input 
-          id="director" 
-          type="text" 
-          name="director" 
-          [(ngModel)]="movie()!.Director" 
+          id="director" type="text" name="Director" 
+          [value]="movie()?.director"
+          [(ngModel)]="movie()!.director" required>
+      </div>
+      <div class="form-group">
+        <label for="year">Рік випуску:</label>
+        <input 
+          id="year" type="number" name="ReleaseYear" min="1900" [value]="movie()?.releaseYear"
+          [(ngModel)]="movie()!.releaseYear" 
+          placeholder="наприклад, 2024" 
           required>
       </div>
-
       <!-- Тривалість -->
       <div class="form-group">
         <label for="runtime">Тривалість:</label>
         <input 
-          id="runtime" 
-          type="text" 
-          name="runtime" 
-          [(ngModel)]="movie()!.Runtime" 
-          placeholder="наприклад, 120 хв" 
+          id="runtime" type="text" name="Runtime" 
+          [value]="movie()?.runtime"
+          [(ngModel)]="movie()!.runtime" 
+          placeholder="наприклад, 1:20" 
+          
           required>
       </div>
     </div>
 
     <!-- Посилання на постер (photoPath) -->
     <div class="form-group">
-      <label for="photoPath">Посилання на постер (photoPath):</label>
+      <label for="photoPath">Посилання на постер:</label>
       <input 
-        id="photoPath" 
-        type="url" 
-        name="photoPath" 
-        [(ngModel)]="movie()!.PhotoPath" 
+        id="photoPath" type="url" name="PhotoPath" 
+        [value]="movie()?.photoPath"
+        [(ngModel)]="movie()!.photoPath" 
         required>
     </div>
 
@@ -58,10 +59,9 @@
     <div class="form-group">
       <label for="description">Опис фільму:</label>
       <textarea 
-        id="description" 
-        name="description" 
-        rows="6" 
-        [(ngModel)]="movie()!.Description" 
+        id="description" name="Description" rows="6" 
+        [value]="movie()?.description"
+        [(ngModel)]="movie()!.description" 
         required></textarea>
     </div>
 

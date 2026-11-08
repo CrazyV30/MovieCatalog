@@ -334,17 +334,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLoginDTO"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLoginDTO"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLoginDTO"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             }
           },
@@ -386,17 +386,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDTO"
+                "$ref": "#/components/schemas/RegisterRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDTO"
+                "$ref": "#/components/schemas/RegisterRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDTO"
+                "$ref": "#/components/schemas/RegisterRequest"
               }
             }
           },
@@ -428,6 +428,65 @@
           }
         }
       }
+    },
+    "/api/User/{login}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -438,7 +497,8 @@
           "description",
           "photoPath",
           "runtime",
-          "director"
+          "director",
+          "releaseYear"
         ],
         "type": "object",
         "properties": {
@@ -457,12 +517,33 @@
             "format": "uri"
           },
           "runtime": {
-            "pattern": "^0[012]:[0-5][0-9]$",
+            "pattern": "^0?[012]:[0-5][0-9]$",
             "type": "string"
           },
           "director": {
             "maxLength": 50,
             "minLength": 1,
+            "type": "string"
+          },
+          "releaseYear": {
+            "maximum": 2026,
+            "minimum": 1800,
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
             "type": "string"
           }
         }
@@ -492,6 +573,14 @@
           },
           "director": {
             "type": "string"
+          },
+          "releaseYear": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
           }
         }
       },
@@ -533,6 +622,39 @@
           }
         }
       },
+      "RegisterRequest": {
+        "required": [
+          "email",
+          "password",
+          "confirmPassword",
+          "username",
+          "surname"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 20,
+            "minLength": 6,
+            "type": "string"
+          },
+          "confirmPassword": {
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 50,
+            "minLength": 2,
+            "type": "string"
+          },
+          "surname": {
+            "maxLength": 50,
+            "minLength": 2,
+            "type": "string"
+          }
+        }
+      },
       "UpdateMovieRequest": {
         "required": [
           "id",
@@ -540,7 +662,8 @@
           "description",
           "photoPath",
           "runtime",
-          "director"
+          "director",
+          "releaseYear"
         ],
         "type": "object",
         "properties": {
@@ -567,37 +690,28 @@
             "format": "uri"
           },
           "runtime": {
-            "pattern": "^0[012]:[0-5][0-9]$",
+            "pattern": "^0?[012]:[0-5][0-9]$",
             "type": "string"
           },
           "director": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string"
+          },
+          "releaseYear": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
           }
         }
       },
-      "UserLoginDTO": {
+      "UserResponse": {
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
-        }
-      },
-      "UserRegisterDTO": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "confirmPassword": {
             "type": "string"
           },
           "username": {

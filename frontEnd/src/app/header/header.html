@@ -1,0 +1,26 @@
+<header class="main-header">
+  <div class="header-container">
+    <a routerLink="/" class="logo">
+      🎬 <span>MovieCatalog</span>
+    </a>
+
+    <nav class="nav-links">
+      <a routerLink="/" routerLinkActive="active">Каталог</a>
+      @if (authService.currentUser(); as user) {
+        <a routerLink="/addMovie" routerLinkActive="active">Додати фільм</a>
+      }
+    </nav>
+
+    <div class="auth-actions">
+      @if (authService.currentUser(); as user) {
+        <span class="user-name">👤 {{ user.username }}</span>
+        <button type="button" class="btn btn-logout" (click)="authService.logout()">
+          Вийти
+        </button>
+      } @else {
+        <a routerLink="/login" class="btn btn-login">Увійти</a>
+        <a routerLink="/register" class="btn btn-register">Реєстрація</a>
+      }
+    </div>
+  </div>
+</header>

@@ -16,7 +16,8 @@ export class AddingMoviePage {
     Description: '',
     PhotoPath: '',
     Runtime: '',
-    Director: ''
+    Director: '',
+    ReleaseYear: 0
   };
   constructor(
     private http: HttpClient, 
@@ -30,7 +31,7 @@ export class AddingMoviePage {
         (response) => {
           console.log('Movie added successfully:', response);
           this.toastr.success('Movie added successfully!', 'Success');
-          this.router.navigate(['/catalog']);
+          this.router.navigate(['/']);
         },
         (error) => {
           console.error('Failed to add movie:', error);
@@ -42,6 +43,6 @@ export class AddingMoviePage {
     }
   }
   cancel() {
-    this.router.navigate(['/catalog']);
+    this.router.navigate(['/']);
   }
 }

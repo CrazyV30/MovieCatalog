@@ -7,9 +7,9 @@ import { OneMoviePage } from './one-movie-page/one-movie-page';
 import { EditPage } from './edit-page/edit-page';
 
 export const routes: Routes = [
-    {path:'', component:FormPage},
+    {path:'', component:MoviePage},
+    {path:'login', component:FormPage},
     {path:'register', component:RegisterPage},
-    {path:'catalog', component:MoviePage},
     {path:'addMovie', component:AddingMoviePage},
     {path:'movie/:id', component:OneMoviePage},
     {path: 'edit/:id', component:EditPage}

@@ -1,4 +1,5 @@
-﻿using backEnd.DTOs;
+﻿using backEnd.Contracts;
+using backEnd.DTOs;
 using backEnd.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,7 @@ namespace backEnd.Controllers
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Login([FromBody]UserLoginDTO userLogin)
+        public ActionResult Login([FromBody]LoginRequest userLogin)
         {
             if (_userService.Login(userLogin.Email, userLogin.Password)) return Ok();
             return BadRequest("Login or Password is uncorrect");
@@ -20,17 +21,30 @@ namespace backEnd.Controllers
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Register([FromBody] UserRegisterDTO userRegister)
+        public ActionResult Register([FromBody] RegisterRequest userRegister)
         {
-            var result = _userService.Register(userRegister);
-            switch (result)
+            var result = _userService.Register(new UserRegisterDTO()
             {
-                case UserRegisterResult.LoginError: return BadRequest("Uncorrect Login");
-                case UserRegisterResult.PasswordError: return BadRequest("Uncorrect Password");
-                case UserRegisterResult.UserNameError: return BadRequest("Uncorrect Username");
-                case UserRegisterResult.SurnameError: return BadRequest("Uncorrect Surname");
-                default: return Ok();
-            }
+                Email = userRegister.Email,
+                Username = userRegister.Username,
+                Surname = userRegister.Surname,
+                Password = userRegister.Password,
+                ConfirmPassword = userRegister.ConfirmPassword
+            });
+            return Ok();
+        }
+        [HttpGet("{login}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<UserResponse> GetUserByLogin([FromRoute] string login)
+        {
+            var user = _userService.GetUserByLogin(login);
+            if (user == null) return NotFound("Not found");
+            return Ok(new UserResponse() {
+                Email = user.Email,
+                Username = user.Username,
+                Surname = user.Surname
+            });
         }
     }
 }

@@ -25,7 +25,14 @@
           placeholder="Ім'я режисера"
           required>
       </div>
-
+      <div class="form-group">
+        <label for="year">Рік випуску:</label>
+        <input 
+          id="year" type="number" name="ReleaseYear" min="1900"
+          [(ngModel)]="movieData.ReleaseYear" 
+          placeholder="наприклад, 2024" 
+          required>
+      </div>
       <div class="form-group">
         <label for="runtime">Тривалість:</label>
         <input 
@@ -33,7 +40,7 @@
           type="text" 
           name="runtime" 
           [(ngModel)]="movieData.Runtime" 
-          placeholder="наприклад, 120 хв" 
+          placeholder="наприклад, 1:25" 
           required>
       </div>
     </div>
