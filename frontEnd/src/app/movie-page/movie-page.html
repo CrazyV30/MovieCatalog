@@ -8,8 +8,9 @@
               type="button" 
               class="btn-delete-card" 
               title="Видалити фільм"
-              (click)="removeMovie(movie.id)">
-              ✕
+              (click)="$event.stopPropagation()"
+              (click)="removeMovie(movie.id)"
+            > ✕
             </button>
          }
         <div class="card-poster">

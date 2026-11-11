@@ -13,6 +13,179 @@
     }
   ],
   "paths": {
+    "/api/Comment": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentResponse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Comment/{id}": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieComment"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieComment"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovieComment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Movie": {
       "get": {
         "tags": [
@@ -299,8 +472,28 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
@@ -491,43 +684,69 @@
   },
   "components": {
     "schemas": {
+      "CommentRequest": {
+        "type": "object",
+        "properties": {
+          "movieId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "CommentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        }
+      },
       "CreateMovieRequest": {
-        "required": [
-          "title",
-          "description",
-          "photoPath",
-          "runtime",
-          "director",
-          "releaseYear"
-        ],
         "type": "object",
         "properties": {
           "title": {
-            "maxLength": 50,
-            "minLength": 1,
             "type": "string"
           },
           "description": {
-            "maxLength": 500,
-            "minLength": 1,
             "type": "string"
           },
           "photoPath": {
-            "type": "string",
-            "format": "uri"
+            "type": "string"
+          },
+          "moviePath": {
+            "type": "string"
           },
           "runtime": {
-            "pattern": "^0?[012]:[0-5][0-9]$",
             "type": "string"
           },
           "director": {
-            "maxLength": 50,
-            "minLength": 1,
             "type": "string"
           },
           "releaseYear": {
-            "maximum": 2026,
-            "minimum": 1800,
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "type": [
               "integer",
@@ -544,6 +763,84 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Movie": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "photoPath": {
+            "type": "string"
+          },
+          "moviePath": {
+            "type": "string"
+          },
+          "runtime": {
+            "type": "string"
+          },
+          "director": {
+            "type": "string"
+          },
+          "releaseYear": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovieComment"
+            }
+          }
+        }
+      },
+      "MovieComment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "movieId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "movie": {
+            "$ref": "#/components/schemas/Movie"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "createdAt": {
             "type": "string"
           }
         }
@@ -568,6 +865,9 @@
           "photoPath": {
             "type": "string"
           },
+          "moviePath": {
+            "type": "string"
+          },
           "runtime": {
             "type": "string"
           },
@@ -581,6 +881,12 @@
               "string"
             ],
             "format": "int32"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentResponse"
+            }
           }
         }
       },
@@ -623,48 +929,26 @@
         }
       },
       "RegisterRequest": {
-        "required": [
-          "email",
-          "password",
-          "confirmPassword",
-          "username",
-          "surname"
-        ],
         "type": "object",
         "properties": {
           "email": {
             "type": "string"
           },
           "password": {
-            "maxLength": 20,
-            "minLength": 6,
             "type": "string"
           },
           "confirmPassword": {
             "type": "string"
           },
           "username": {
-            "maxLength": 50,
-            "minLength": 2,
             "type": "string"
           },
           "surname": {
-            "maxLength": 50,
-            "minLength": 2,
             "type": "string"
           }
         }
       },
       "UpdateMovieRequest": {
-        "required": [
-          "id",
-          "title",
-          "description",
-          "photoPath",
-          "runtime",
-          "director",
-          "releaseYear"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -676,26 +960,21 @@
             "format": "int32"
           },
           "title": {
-            "maxLength": 50,
-            "minLength": 1,
             "type": "string"
           },
           "description": {
-            "maxLength": 500,
-            "minLength": 1,
             "type": "string"
           },
           "photoPath": {
-            "type": "string",
-            "format": "uri"
+            "type": "string"
+          },
+          "moviePath": {
+            "type": "string"
           },
           "runtime": {
-            "pattern": "^0?[012]:[0-5][0-9]$",
             "type": "string"
           },
           "director": {
-            "maxLength": 50,
-            "minLength": 1,
             "type": "string"
           },
           "releaseYear": {
@@ -725,6 +1004,9 @@
     }
   },
   "tags": [
+    {
+      "name": "Comment"
+    },
     {
       "name": "Movie"
     },

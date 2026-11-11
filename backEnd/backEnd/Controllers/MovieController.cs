@@ -65,7 +65,14 @@ namespace backEnd.Controllers
                 Runtime = movie.Runtime,
                 Director = movie.Director,
                 ReleaseYear = movie.ReleaseYear,
-                MoviePath = movie.MoviePath
+                MoviePath = movie.MoviePath,
+                Comments = movie.Comments.Count>0? movie.Comments.Select(c=>new CommentResponse()
+                {
+                    Id = c.Id,
+                    AuthorName = c.AuthorName,
+                    Text = c.Text,
+                    CreatedAt = c.CreatedAt
+                }).ToList() : new List<CommentResponse>()
             };
             return Ok(res);
         }
@@ -84,7 +91,7 @@ namespace backEnd.Controllers
                 Runtime = movieRequest.Runtime,
                 Director = movieRequest.Director,
                 ReleaseYear = movieRequest.ReleaseYear,
-                MoviePath = movieRequest.MoviePath
+                MoviePath = movieRequest.MoviePath,
             };
             var movie = _movieService.AddMovie(dto);
             if (movie == MovieResult.NullMovieError) return BadRequest("Movie cannot be null.");

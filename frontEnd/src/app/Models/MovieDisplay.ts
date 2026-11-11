@@ -1,3 +1,5 @@
+import { Comment } from "./Comment";
+
 export interface MovieDisplay {
     id: number;
     title: string;
@@ -7,4 +9,5 @@ export interface MovieDisplay {
     director: string;
     releaseYear:number;
     moviePath:string;
+    comments:Comment[];
 }

@@ -1,6 +1,7 @@
 ﻿using Bll.DTOs;
 using Domain.Models;
 using Dll.Repository;
+using BLL.DTOs;
 
 namespace Bll.Services
 {
@@ -52,7 +53,15 @@ namespace Bll.Services
                 Runtime = movie.Runtime,
                 Director = movie.Director,
                 ReleaseYear = movie.ReleaseYear,
-                MoviePath = movie.MoviePath
+                MoviePath = movie.MoviePath,
+                Comments = movie.Comments.Select(C => new CommentDTO()
+                {
+                    Id = C.Id,
+                    MovieId = C.MovieId,
+                    Text = C.Text,
+                    AuthorName = C.AuthorName,
+                    CreatedAt = C.CreatedAt
+                }).ToList()
             };
         }
         public MovieResult AddMovie(MovieDTO movieDTO)
@@ -68,7 +77,8 @@ namespace Bll.Services
                 Runtime = movieDTO.Runtime,
                 Director = movieDTO.Director,
                 ReleaseYear = movieDTO.ReleaseYear,
-                MoviePath = movieDTO.MoviePath
+                MoviePath = movieDTO.MoviePath,
+                Comments = new List<MovieComment>()
             };
             _movieRepository.Add(movie);
             return MovieResult.Ok;

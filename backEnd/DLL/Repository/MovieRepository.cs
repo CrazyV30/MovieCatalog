@@ -1,5 +1,6 @@
-﻿using backEnd.Context;
+﻿using Dll.Context;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dll.Repository
 {
@@ -17,7 +18,7 @@ namespace Dll.Repository
         public List<Movie> GetAll() => _context.Movies.ToList();
 
         public Movie? GetByName(string name) => _context.Movies.FirstOrDefault(m => string.Equals(m.Title.ToLower(), name.ToLower()));
-        public Movie? GetById(int id) => _context.Movies.FirstOrDefault(m => m.Id == id);
+        public Movie? GetById(int id) => _context.Movies.Include(m => m.Comments).FirstOrDefault(m => m.Id == id);
 
         public bool Remove(Movie entity)
         {

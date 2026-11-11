@@ -1,9 +1,13 @@
 
-using backEnd.Context;
-using Domain.Models;
-using Dll.Repository;
+using Dll.Context;
+using backEnd.Validators;
 using Bll.Services;
+using BLL.Services;
+using Dll.Repository;
+using Domain.Models;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using DLL.Repository;
 
 namespace backEnd
 {
@@ -19,10 +23,19 @@ namespace backEnd
             builder.Services.AddOpenApi();
 
             builder.Services.AddDbContext<AppDbContext>(op => op.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddTransient<UserService>();
             builder.Services.AddTransient<MovieService>();
+            builder.Services.AddTransient<CommentService>();
             builder.Services.AddTransient<UserRepository>();
             builder.Services.AddTransient<MovieRepository>();
+            builder.Services.AddTransient<CommentRepository>();
+
+
+            builder.Services.AddValidatorsFromAssemblyContaining<MovieRequestValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<MovieUpdateRequestValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<RegisterValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CommentRequestValidator>();
 
             builder.Services.AddCors(options =>
             {

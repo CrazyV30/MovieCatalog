@@ -23,7 +23,7 @@ namespace backEnd.Controllers
                 CreatedAt = c.CreatedAt
             }).ToList());
         }
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         public ActionResult<MovieComment> GetCommentById([FromRoute] int id)
         {
             var comment = _commentService.GetById(id);
@@ -50,13 +50,13 @@ namespace backEnd.Controllers
             _commentService.Add(dto);
             return CreatedAtAction(nameof(AddComment), request);
         }
-        [HttpDelete("id:int")]
+        [HttpDelete("{id:int}")]
         public ActionResult RemoveComment([FromRoute] int id)
         {
             if (_commentService.Remove(id)) return Ok();
             return NotFound();
         }
-        [HttpPut("id:int")]
+        [HttpPut("{id:int}")]
         public ActionResult UpdateComment([FromRoute] int id, [FromBody] CommentRequest request)
         {
             var comment = _commentService.GetById(id);

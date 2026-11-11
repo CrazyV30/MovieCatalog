@@ -1,6 +1,7 @@
-﻿using backEnd.Context;
+﻿using Dll.Context;
 using Dll.Repository;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace DLL.Repository
     {
         public bool Add(MovieComment entity)
         {
+            entity.Movie = _context.Movies.FirstOrDefault(m => m.Id == entity.MovieId)!;
             _context.Comments.Add(entity);
             _context.SaveChanges();
             return true;

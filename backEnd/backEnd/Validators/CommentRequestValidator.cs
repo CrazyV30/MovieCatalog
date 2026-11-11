@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace backEnd.Validators
 {
-    public class CommentRequestValidator:AbstractValidator<CommentRequest>
+    public class CommentRequestValidator :AbstractValidator<CommentRequest>
     {
         public CommentRequestValidator()
         {

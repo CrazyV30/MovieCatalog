@@ -1,4 +1,4 @@
-﻿using backEnd.Context;
+﻿using Dll.Context;
 using Domain.Models;
 
 namespace Dll.Repository
@@ -14,6 +14,6 @@ namespace Dll.Repository
 
         public User? GetUserByLogin(string login) => _context.Users.FirstOrDefault(u => u.Email == login);
 
-        public bool Login(string login, string pass) => _context.Users.Any<User>(u => string.Equals(u.Email,login) && string.Equals(u.Password, pass));
+        public bool Login(string email, string pass) => _context.Users.Any<User>(u => string.Equals(u.Email,email) && string.Equals(u.Password, pass));
     }
 }

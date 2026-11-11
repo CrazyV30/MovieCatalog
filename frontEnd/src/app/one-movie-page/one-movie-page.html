@@ -39,4 +39,91 @@
       </div>
     </div>
   </div>
+  <div class="comments-section">
+    <h3>Коментарі ({{ comments()?.length }})</h3>
+
+    <!-- Форма додавання нового коментаря -->
+    @if (authService.currentUser(); as user) {
+      <form #commentForm="ngForm" (ngSubmit)="onAddComment(commentForm, movie()!.id)" class="comment-form">
+        <div class="form-group">
+          <label for="commentText">Залишити коментар як <strong>{{ user.username }}</strong>:</label>
+          <textarea 
+            id="commentText" 
+            name="commentText" 
+            rows="3" 
+            [(ngModel)]="newCommentText" 
+            placeholder="Напишіть свій відгук про фільм..." 
+            required></textarea>
+        </div>
+        <div class="comment-form-actions">
+          <button type="submit" class="btn btn-primary" [disabled]="commentForm.invalid">
+            Надіслати
+          </button>
+        </div>
+      </form>
+    } @else {
+      <div class="auth-prompt">
+        <span>Щоб залишити коментар, будь ласка, </span>
+        <a class="auth-link" (click)="toForm()">увійдіть в акаунт</a>.
+      </div>
+    }
+
+    <!-- Список коментарів -->
+    <div class="comments-list">
+      @for (comment of comments(); track comment.id || $index) {
+        <div class="comment-item" [class.own-comment]="isMyComment(comment.authorName)">
+          
+          <div class="comment-header">
+            <span class="comment-author">
+              👤 {{ comment.authorName }}
+              @if (isMyComment(comment.authorName)) {
+                <span class="author-badge">(Ви)</span>
+              }
+            </span>
+            
+            <div class="comment-header-right">
+              <span class="comment-date">{{ comment.createdAt | date:'dd.MM.yyyy HH:mm' }}</span>
+              
+              <!-- Кнопки дій ТІЛЬКИ для автора коментаря -->
+              @if (isMyComment(comment.authorName) && !comment.isEditing) {
+                <div class="comment-actions">
+                  <button type="button" class="btn-action-icon" title="Редагувати" (click)="startEdit(comment)">
+                    ✏️
+                  </button>
+                  <button type="button" class="btn-action-icon delete" title="Видалити" (click)="onDeleteComment(comment)">
+                    🗑️
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Текст коментаря / Форма редагування -->
+          @if (comment.isEditing) {
+            <div class="edit-comment-box">
+              <textarea 
+                rows="3" 
+                [(ngModel)]="editText" 
+                class="edit-textarea"></textarea>
+              <div class="edit-actions">
+                <button type="button" class="btn btn-secondary btn-sm" (click)="cancelEdit(comment)">
+                  Скасувати
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" [disabled]="!editText.trim()" (click)="saveEdit(comment)">
+                  Зберегти
+                </button>
+              </div>
+            </div>
+          } @else {
+            <p class="comment-text">{{ comment.text }}</p>
+          }
+
+        </div>
+      } @empty {
+        <div class="no-comments">
+          Поки немає коментарів. Будьте першим, хто залишить відгук!
+        </div>
+      }
+    </div>
+  </div>
 </div>

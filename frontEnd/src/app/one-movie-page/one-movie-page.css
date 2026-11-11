@@ -54,7 +54,123 @@
 .movie-description {
   white-space: pre-line;
 }
+/* Кнопка перегляду у деталях */
+.btn-watch {
+  background-color: #03dac6;
+  color: #000000;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: var(--border-radius-md, 6px);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
 
+.btn-watch:hover {
+  background-color: #00b3a1;
+  color: #000000;
+  transform: scale(1.03);
+}
+
+/* Маленька кнопка у картці каталогу */
+.btn-watch-sm {
+  width: 100%;
+  margin-top: 10px;
+  background-color: rgba(3, 218, 198, 0.15);
+  color: #03dac6;
+  border: 1px solid #03dac6;
+  padding: 6px 12px;
+  font-size: 0.88rem;
+  border-radius: var(--border-radius-md, 6px);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-watch-sm:hover {
+  background-color: #03dac6;
+  color: #000000;
+}
+
+.card-actions {
+  margin-top: auto; /* Притискає кнопку до низу картки */
+}
+/* Шапка коментаря */
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.comment-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-badge {
+  color: var(--accent-primary, #bb86fc);
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+
+/* Виділення власних коментарів лівою смужкою */
+.comment-item.own-comment {
+  border-left-color: var(--accent-secondary, #03dac6);
+}
+
+/* Маленькі іконки дій */
+.comment-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-action-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.1s;
+  padding: 2px 4px;
+}
+
+.btn-action-icon:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* Поле inline-редагування */
+.edit-comment-box {
+  margin-top: 8px;
+}
+
+.edit-textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--bg-surface, #1e1e1e);
+  border: 1px solid var(--accent-primary, #bb86fc);
+  border-radius: var(--border-radius-md, 6px);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 0.85rem;
+}
 @media (max-width: 768px) {
   .movie-details-card {
     flex-direction: column;

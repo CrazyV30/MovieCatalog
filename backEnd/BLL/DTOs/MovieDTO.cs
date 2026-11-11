@@ -1,4 +1,6 @@
-﻿namespace Bll.DTOs
+﻿using BLL.DTOs;
+
+namespace Bll.DTOs
 {
     public class MovieDTO
     {
@@ -10,5 +12,6 @@
         public string Runtime { get; set; } = string.Empty;
         public string Director { get; set; } = string.Empty;
         public int ReleaseYear { get; set; }
+        public List<CommentDTO> Comments { get; set; }
     }
 }

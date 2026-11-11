@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace backEnd.Context
+namespace Dll.Context
 {
     public class AppDbContext:DbContext
     {

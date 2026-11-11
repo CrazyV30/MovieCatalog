@@ -30,6 +30,6 @@ namespace Bll.Services
             return new UserDTO() { Email = user.Email, Surname = user.Surname, Username = user.Username };
         }
 
-        public bool Login(string login, string pass) => _userRepository.Login(login, pass);
+        public bool Login(string email, string pass) => _userRepository.Login(email, pass);
     }
 }

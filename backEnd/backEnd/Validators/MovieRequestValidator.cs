@@ -5,7 +5,7 @@ namespace backEnd.Validators
 {
     public class MovieRequestValidator:AbstractValidator<CreateMovieRequest>
     {
-        MovieRequestValidator()
+        public MovieRequestValidator()
         {
             RuleFor(x => x.Title).NotEmpty().Length(1, 50).WithMessage("Title is too long");
             RuleFor(x => x.Description).NotEmpty().Length(1, 250).WithMessage("Description is too long");
