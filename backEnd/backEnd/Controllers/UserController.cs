@@ -1,4 +1,5 @@
-﻿using backEnd.Contracts;
+﻿using AutoMapper;
+using backEnd.Contracts;
 using Bll.DTOs;
 using Bll.Services;
 using FluentValidation;
@@ -9,7 +10,7 @@ namespace backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(UserService _userService, IValidator<RegisterRequest> _validator) : ControllerBase
+    public class UserController(UserService _userService, IValidator<RegisterRequest> _validator, IMapper _mapper) : ControllerBase
     {
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -26,13 +27,7 @@ namespace backEnd.Controllers
         {
             var res = _validator.Validate(userRegister);
             if (!res.IsValid) return BadRequest(res.Errors);
-            _userService.Register(new UserRegisterDTO() {
-                Email = userRegister.Email,
-                Username = userRegister.Username,
-                Surname = userRegister.Surname,
-                Password = userRegister.Password,
-                ConfirmPassword = userRegister.ConfirmPassword
-            });
+            _userService.Register(_mapper.Map<UserRegisterDTO>(userRegister));
             return Ok();
         }
         [HttpGet("{login}")]
@@ -42,11 +37,7 @@ namespace backEnd.Controllers
         {
             var user = _userService.GetUserByLogin(login);
             if (user == null) return NotFound("Not found");
-            return Ok(new UserResponse() {
-                Email = user.Email,
-                Username = user.Username,
-                Surname = user.Surname
-            });
+            return Ok(_mapper.Map<UserResponse>(user));
         }
     }
 }

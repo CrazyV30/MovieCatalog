@@ -1,32 +1,24 @@
-﻿using backEnd.Contracts;
+﻿using AutoMapper;
+using backEnd.Contracts;
 using Bll.DTOs;
 using Bll.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 using static Bll.Services.MovieService;
 
 namespace backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController(MovieService _movieService, IValidator<CreateMovieRequest> _validator, IValidator<UpdateMovieRequest> _validatorUpdate) : ControllerBase
+    public class MovieController(MovieService _movieService, IValidator<CreateMovieRequest> _validator, IValidator<UpdateMovieRequest> _validatorUpdate, IMapper _mapper) : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<List<MovieResponse>> GetAllMovies()
         {
-            var movies = _movieService.GetAllMovies().Select(m => new MovieResponse
-            {
-                Id = m.Id,
-                Title = m.Title,
-                Description = m.Description,
-                PhotoPath = m.PhotoPath,
-                Runtime = m.Runtime,
-                Director = m.Director,
-                ReleaseYear = m.ReleaseYear,
-                MoviePath = m.MoviePath
-            }).ToList();
+            var movies = _movieService.GetAllMovies().Select(m => _mapper.Map<MovieResponse>(m)).ToList();
             return Ok(movies);
         }
         [HttpGet("byName/{name}")]
@@ -36,18 +28,7 @@ namespace backEnd.Controllers
         {
             var movie = _movieService.GetMovieByName(name);
             if (movie == null) return NotFound();
-            var res = new MovieResponse
-            {
-                Id = movie.Id,
-                Title = movie.Title,
-                Description = movie.Description,
-                PhotoPath = movie.PhotoPath,
-                Runtime = movie.Runtime,
-                Director = movie.Director,
-                ReleaseYear = movie.ReleaseYear,
-                MoviePath = movie.MoviePath
-            };
-            return Ok(res);
+            return Ok(_mapper.Map<MovieResponse>(movie));
         }
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -56,24 +37,8 @@ namespace backEnd.Controllers
         {
             var movie = _movieService.GetMovieById(id);
             if (movie == null) return NotFound();
-            var res = new MovieResponse
-            {
-                Id = movie.Id,
-                Title = movie.Title,
-                Description = movie.Description,
-                PhotoPath = movie.PhotoPath,
-                Runtime = movie.Runtime,
-                Director = movie.Director,
-                ReleaseYear = movie.ReleaseYear,
-                MoviePath = movie.MoviePath,
-                Comments = movie.Comments.Count>0? movie.Comments.Select(c=>new CommentResponse()
-                {
-                    Id = c.Id,
-                    AuthorName = c.AuthorName,
-                    Text = c.Text,
-                    CreatedAt = c.CreatedAt
-                }).ToList() : new List<CommentResponse>()
-            };
+            var res = _mapper.Map<MovieResponse>(movie);
+            res.Comments = movie.Comments.Count > 0 ? movie.Comments.Select(c => _mapper.Map<CommentResponse>(c)).ToList() : new List<CommentResponse>();
             return Ok(res);
         }
         [HttpPost]
@@ -83,17 +48,7 @@ namespace backEnd.Controllers
         {
             var res = _validator.Validate(movieRequest);
             if (!res.IsValid) return BadRequest(res.Errors);
-            var dto = new MovieDTO
-            {
-                Title = movieRequest.Title,
-                Description = movieRequest.Description,
-                PhotoPath = movieRequest.PhotoPath,
-                Runtime = movieRequest.Runtime,
-                Director = movieRequest.Director,
-                ReleaseYear = movieRequest.ReleaseYear,
-                MoviePath = movieRequest.MoviePath,
-            };
-            var movie = _movieService.AddMovie(dto);
+            var movie = _movieService.AddMovie(_mapper.Map<MovieDTO>(movieRequest));
             if (movie == MovieResult.NullMovieError) return BadRequest("Movie cannot be null.");
             return CreatedAtAction(nameof(GetMovieByName), new { name = movieRequest.Title }, movieRequest);
         }
@@ -117,18 +72,7 @@ namespace backEnd.Controllers
             var res = _validatorUpdate.Validate(movieDTO);
             if (!res.IsValid) return BadRequest(res.Errors);
             if (_movieService.GetMovieById(id) == null) return NotFound();
-            var movie = new MovieDTO
-            {
-                Id = id,
-                Title = movieDTO.Title,
-                Description = movieDTO.Description,
-                PhotoPath = movieDTO.PhotoPath,
-                Runtime = movieDTO.Runtime,
-                Director = movieDTO.Director,
-                ReleaseYear = movieDTO.ReleaseYear,
-                MoviePath = movieDTO.MoviePath
-            };
-            _movieService.UpdateMovie(movie);
+            _movieService.UpdateMovie(_mapper.Map<MovieDTO>(movieDTO));
             return NoContent();
         }
     }

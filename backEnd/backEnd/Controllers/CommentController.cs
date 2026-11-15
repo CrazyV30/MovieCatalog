@@ -1,5 +1,6 @@
-﻿using backEnd.Contracts;
-using BLL.DTOs;
+﻿using AutoMapper;
+using backEnd.Contracts;
+using Bll.DTOs;
 using BLL.Services;
 using Domain.Models;
 using FluentValidation;
@@ -10,44 +11,26 @@ namespace backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController(CommentService _commentService, IValidator<CommentRequest> _validator) : ControllerBase
+    public class CommentController(CommentService _commentService, IValidator<CommentRequest> _validator, IMapper _mapper) : ControllerBase
     {
         [HttpGet]
         public ActionResult<List<CommentResponse>> GetAllComments()
         {
-            return Ok(_commentService.GetAll().Select(c=> new CommentResponse()
-            {
-                Id = c.Id,
-                Text = c.Text,
-                AuthorName = c.AuthorName,
-                CreatedAt = c.CreatedAt
-            }).ToList());
+            return Ok(_commentService.GetAll().Select(c=>_mapper.Map<CommentResponse>(c)).ToList());
         }
         [HttpGet("{id:int}")]
         public ActionResult<MovieComment> GetCommentById([FromRoute] int id)
         {
             var comment = _commentService.GetById(id);
             if (comment == null) return NotFound();
-            return Ok(new CommentResponse()
-            {
-                Id = comment.Id,
-                Text = comment.Text,
-                AuthorName = comment.AuthorName,
-                CreatedAt = comment.CreatedAt
-            });
+            return Ok(_mapper.Map<CommentResponse>(comment));
         }
         [HttpPost]
         public ActionResult AddComment([FromBody] CommentRequest request)
         {
             var res = _validator.Validate(request);
             if (!res.IsValid) return BadRequest(res.Errors);
-            var dto = new CommentDTO()
-            {
-                MovieId = request.MovieId,
-                Text = request.Text,
-                AuthorName = request.AuthorName
-            };
-            _commentService.Add(dto);
+            _commentService.Add(_mapper.Map<CommentDTO>(request));
             return CreatedAtAction(nameof(AddComment), request);
         }
         [HttpDelete("{id:int}")]

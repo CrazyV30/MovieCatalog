@@ -1,4 +1,4 @@
-﻿using BLL.DTOs;
+﻿using Bll.DTOs;
 
 namespace Bll.DTOs
 {

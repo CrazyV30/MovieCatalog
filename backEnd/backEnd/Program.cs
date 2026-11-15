@@ -8,6 +8,8 @@ using Domain.Models;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using DLL.Repository;
+using BLL.MapperProfile;
+using backEnd.MapperProfile;
 
 namespace backEnd
 {
@@ -36,6 +38,11 @@ namespace backEnd
             builder.Services.AddValidatorsFromAssemblyContaining<MovieUpdateRequestValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<RegisterValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<CommentRequestValidator>();
+
+            builder.Services.AddAutoMapper(opt => {
+                opt.AddProfile<DtoProfile>();
+                opt.AddProfile<ContractProfile>();
+            });
 
             builder.Services.AddCors(options =>
             {

@@ -1,4 +1,5 @@
-﻿using BLL.DTOs;
+﻿using AutoMapper;
+using Bll.DTOs;
 using DLL.Repository;
 using Domain.Models;
 using System;
@@ -8,39 +9,18 @@ using System.Text;
 
 namespace BLL.Services
 {
-    public class CommentService(CommentRepository _commentRepository)
+    public class CommentService(CommentRepository _commentRepository, IMapper _mapper)
     {
-        public List<CommentDTO> GetAll()=> _commentRepository.GetAll().Select(c => new CommentDTO()
-        {
-            Id = c.Id,
-            MovieId = c.MovieId,
-            Text = c.Text,
-            AuthorName = c.AuthorName,
-            CreatedAt = c.CreatedAt
-        }).ToList();
+        public List<CommentDTO> GetAll()=> _commentRepository.GetAll().Select(c => _mapper.Map<CommentDTO>(c)).ToList();
         public CommentDTO? GetById(int id)
         {
             var com = _commentRepository.GetById(id);
             if (com == null) return null;
-            return new CommentDTO()
-            {
-                Id = com.Id,
-                MovieId = com.MovieId,
-                Text = com.Text,
-                AuthorName = com.AuthorName,
-                CreatedAt = com.CreatedAt
-            };
+            return _mapper.Map<CommentDTO>(com);
         }
         public bool Add(CommentDTO commentDTO)
         {
-            var comment = new MovieComment()
-            {
-                MovieId = commentDTO.MovieId,
-                Text = commentDTO.Text,
-                AuthorName = commentDTO.AuthorName,
-                CreatedAt = DateTime.Now.ToShortDateString()
-            };
-            return _commentRepository.Add(comment);
+            return _commentRepository.Add(_mapper.Map<MovieComment>(commentDTO));
         }
         public bool Remove(int id)
         {

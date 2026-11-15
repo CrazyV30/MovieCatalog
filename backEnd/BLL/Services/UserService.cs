@@ -2,6 +2,7 @@
 using Domain.Models;
 using Dll.Repository;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Bll.Services
 {
@@ -9,25 +10,18 @@ namespace Bll.Services
     {
         Ok
     }
-    public class UserService(UserRepository _userRepository)
+    public class UserService(UserRepository _userRepository, IMapper _mapper)
     {
         public UserRegisterResult Register(UserRegisterDTO userDTO)
         {
-            var user = new User()
-            {
-                Email = userDTO.Email,
-                Password = userDTO.Password,
-                Username = userDTO.Username,
-                Surname = userDTO.Surname
-            };
-            _userRepository.AddUser(user);
+            _userRepository.AddUser(_mapper.Map<User>(userDTO));
             return UserRegisterResult.Ok;
         }
 
         public UserDTO? GetUserByLogin(string login) {
             var user = _userRepository.GetUserByLogin(login);
             if (user == null) return null;
-            return new UserDTO() { Email = user.Email, Surname = user.Surname, Username = user.Username };
+            return _mapper.Map<UserDTO>(user);
         }
 
         public bool Login(string email, string pass) => _userRepository.Login(email, pass);

@@ -305,3 +305,8 @@ D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\BLL.pdb
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\DLL.pdb
 D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\Domain.pdb
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\AutoMapper.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\IT-office\projects\Coding(asp-net)\cinemaFull\backEnd\backEnd\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
