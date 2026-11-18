@@ -14,7 +14,7 @@ namespace backEnd.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.15");
 
             modelBuilder.Entity("Domain.Models.Movie", b =>
                 {
@@ -22,11 +22,19 @@ namespace backEnd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Director")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

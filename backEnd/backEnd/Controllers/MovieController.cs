@@ -2,6 +2,7 @@
 using backEnd.Contracts;
 using Bll.DTOs;
 using Bll.Services;
+using BLL.DTOs;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,7 @@ namespace backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController(MovieService _movieService, IValidator<CreateMovieRequest> _validator, IValidator<UpdateMovieRequest> _validatorUpdate, IMapper _mapper) : ControllerBase
+    public class MovieController(MovieService _movieService, IValidator<CreateMovieRequest> _validator, IValidator<UpdateMovieRequest> _validatorUpdate, IValidator<SearchFilterContract> _validatorSearch, IMapper _mapper) : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -74,6 +75,17 @@ namespace backEnd.Controllers
             if (_movieService.GetMovieById(id) == null) return NotFound();
             _movieService.UpdateMovie(_mapper.Map<MovieDTO>(movieDTO));
             return NoContent();
+        }
+
+        [HttpGet("search")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        public async Task<ActionResult<List<MovieResponse>>> Search([FromQuery] SearchFilterContract searchFilter)
+        {
+            var res = _validatorSearch.Validate(searchFilter);
+            if (!res.IsValid) return BadRequest(res.Errors);
+            return Ok((await _movieService.SearchByFilter(_mapper.Map<SearchFilterDTO>(searchFilter))).Select(m => _mapper.Map<MovieResponse>(m)));
         }
     }
 }

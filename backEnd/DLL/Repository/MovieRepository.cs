@@ -1,6 +1,7 @@
 ﻿using Dll.Context;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Dll.Repository
 {
@@ -19,6 +20,7 @@ namespace Dll.Repository
 
         public Movie? GetByName(string name) => _context.Movies.FirstOrDefault(m => string.Equals(m.Title.ToLower(), name.ToLower()));
         public Movie? GetById(int id) => _context.Movies.Include(m => m.Comments).FirstOrDefault(m => m.Id == id);
+        public async Task<List<Movie>> SearchBCondition(Expression<Func<Movie, bool>> predicat) => await _context.Movies.Where(predicat).ToListAsync();
 
         public bool Remove(Movie entity)
         {
@@ -38,6 +40,8 @@ namespace Dll.Repository
             movie.Runtime = entity.Runtime;
             movie.ReleaseYear = entity.ReleaseYear;
             movie.MoviePath = entity.MoviePath;
+            movie.Genre = entity.Genre;
+            movie.Country = entity.Country;
             _context.SaveChanges();
             return true;
         }

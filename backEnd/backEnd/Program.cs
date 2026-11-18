@@ -1,4 +1,3 @@
-
 using Dll.Context;
 using backEnd.Validators;
 using Bll.Services;
@@ -38,6 +37,7 @@ namespace backEnd
             builder.Services.AddValidatorsFromAssemblyContaining<MovieUpdateRequestValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<RegisterValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<CommentRequestValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<FilterValidator>();
 
             builder.Services.AddAutoMapper(opt => {
                 opt.AddProfile<DtoProfile>();

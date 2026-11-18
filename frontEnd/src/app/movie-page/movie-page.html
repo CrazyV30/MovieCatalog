@@ -1,43 +1,57 @@
 <div class="catalog-container">
-  <!-- Сітка фільмів -->
-  <div class="movies-grid">
-    @for (movie of movies(); track movie.id) {
-      <div class="movie-card" (click)="viewMovieDetails(movie.id)">
-         @if (authService.currentUser()) {
-            <button 
-              type="button" 
-              class="btn-delete-card" 
-              title="Видалити фільм"
-              (click)="$event.stopPropagation()"
-              (click)="removeMovie(movie.id)"
-            > ✕
-            </button>
-         }
-        <div class="card-poster">
-          <img [src]="movie.photoPath" [alt]="movie.title" loading="lazy">
+  @if (activeQuery()) {
+    <div class="search-status">
+      <span>Результати пошуку для: <strong>"{{ activeQuery() }}"</strong></span>
+      <button type="button" (click)="clearSearch()" class="btn-reset">
+        Скинути пошук ✕
+      </button>
+    </div>
+  }
+  @if (isLoading()) {
+    <p>Завантаження фільмів...</p>
+  } @else if (movies().length === 0) {
+    <p>За вашим запитом фільмів не знайдено.</p>
+  } @else {
+    <!-- Сітка фільмів -->
+    <div class="movies-grid">
+      @for (movie of movies(); track movie.id) {
+        <div class="movie-card" (click)="viewMovieDetails(movie.id)">
+          @if (authService.currentUser()) {
+              <button 
+                type="button" 
+                class="btn-delete-card" 
+                title="Видалити фільм"
+                (click)="$event.stopPropagation()"
+                (click)="removeMovie(movie.id)"
+              > ✕
+              </button>
+          }
+          <div class="card-poster">
+            <img [src]="movie.photoPath" [alt]="movie.title" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">{{ movie.title }}</h3>
+            <p class="card-meta">
+              <span>{{ movie.releaseYear }} р.</span> • <span>{{ movie.runtime }}</span> • <span>{{ movie.director }}</span>
+            </p>
+            <p class="card-description">{{ movie.description }}</p>
+            <div class="card-actions">
+            <a 
+              [href]="movie.moviePath" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn btn-watch-sm"
+              (click)="$event.stopPropagation()">
+              ▶ Дивитися
+            </a>
+          </div>
+          </div>
         </div>
-        <div class="card-content">
-          <h3 class="card-title">{{ movie.title }}</h3>
-          <p class="card-meta">
-            <span>{{ movie.releaseYear }} р.</span> • <span>{{ movie.runtime }}</span> • <span>{{ movie.director }}</span>
-          </p>
-          <p class="card-description">{{ movie.description }}</p>
-          <div class="card-actions">
-          <a 
-            [href]="movie.moviePath" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="btn btn-watch-sm"
-            (click)="$event.stopPropagation()">
-            ▶ Дивитися
-          </a>
+      } @empty {
+        <div class="empty-state">
+          <p>Фільмів поки немає в каталозі.</p>
         </div>
-        </div>
-      </div>
-    } @empty {
-      <div class="empty-state">
-        <p>Фільмів поки немає в каталозі.</p>
-      </div>
-    }
-  </div>
+      }
+    </div>
+  }
 </div>

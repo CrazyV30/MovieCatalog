@@ -10,6 +10,8 @@
         public string Runtime { get; set; } = string.Empty;
         public string Director { get; set; } = string.Empty;
         public int ReleaseYear { get; set; }
+        public string Genre { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
         public List<CommentResponse> Comments { get; set; }
     }
 }

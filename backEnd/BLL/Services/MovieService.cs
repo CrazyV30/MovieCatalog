@@ -1,7 +1,9 @@
-﻿using Bll.DTOs;
-using Domain.Models;
+﻿using AutoMapper;
+using Bll.DTOs;
+using BLL.DTOs;
 using Dll.Repository;
-using AutoMapper;
+using Domain.Models;
+using static System.Net.WebRequestMethods;
 
 namespace Bll.Services
 {
@@ -52,6 +54,15 @@ namespace Bll.Services
             _movieRepository.Update(upd);
             return MovieResult.Ok;
         }
-
+        public async Task<List<MovieDTO>> SearchByFilter(SearchFilterDTO searchFilter)
+        {
+            if (!string.IsNullOrEmpty(searchFilter.Title)) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => x.Title.ToLower().Contains(searchFilter.Title.ToLower())));
+            if (!string.IsNullOrEmpty(searchFilter.Genre)) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => string.Equals(x.Genre.ToLower(), searchFilter.Genre.ToLower())));
+            if (!string.IsNullOrEmpty(searchFilter.Country)) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => string.Equals(x.Country.ToLower(), searchFilter.Country.ToLower())));
+            if (searchFilter.Id != null) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => x.Id == searchFilter.Id));
+            if (searchFilter.Year!= null) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => x.ReleaseYear == searchFilter.Year));
+            if (!string.IsNullOrEmpty(searchFilter.KeyWord)) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => x.Title.ToLower().Contains(searchFilter.KeyWord.ToLower()) || x.Description.ToLower().Contains(searchFilter.KeyWord.ToLower())));
+            return GetAllMovies();
+        }
     }
 }

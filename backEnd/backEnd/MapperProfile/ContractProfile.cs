@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using backEnd.Contracts;
 using Bll.DTOs;
+using BLL.DTOs;
 
 namespace backEnd.MapperProfile
 {
@@ -18,6 +19,8 @@ namespace backEnd.MapperProfile
             //Comment
             CreateMap<CommentDTO, CommentResponse>().ReverseMap();
             CreateMap<CommentDTO, CommentRequest>().ReverseMap();
+            //Filter
+            CreateMap<SearchFilterContract, SearchFilterDTO>().ReverseMap();
 
         }
     }

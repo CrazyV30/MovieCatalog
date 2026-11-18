@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Bll.DTOs;
+using BLL.DTOs;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace BLL.MapperProfile
             CreateMap<Movie, MovieDTO>().ReverseMap();
             //Comment
             CreateMap<MovieComment, CommentDTO>().ReverseMap();
+            //Filter
+            CreateMap<SearchFilter, SearchFilterDTO>().ReverseMap();
         }
     }
 }
