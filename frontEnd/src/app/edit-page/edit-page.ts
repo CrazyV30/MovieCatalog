@@ -31,22 +31,19 @@ export class EditPage {
   }
   onSubmit(form: NgForm) {
     if (form.invalid) {
-      form.control.markAllAsTouched(); // Підсвітить усі незаповнені/невалідні поля
+      form.control.markAllAsTouched(); 
       this.serverError.set('Будь ласка, виправте помилки перед збереженням.');
       return;
     }
 
     this.serverError.set(null);
 
-    // Ваш існуючий запит на оновлення:
     const updatedMovie: MovieUpdate = form.value;
     this.http.put(this.httpUrl + '/' + this.movie()?.id, updatedMovie).subscribe({
       next: () => {
-        // успішне збереження
         this.router.navigate(['/movie', updatedMovie.Id]);
       },
       error: (err) => {
-        // Якщо бекенд повернув 400 Bad Request від FluentValidation
         if (err.status === 400 && err.error?.errors) {
           const messages = Object.values(err.error.errors).flat().join(' ');
           this.serverError.set(`Помилка валідації: ${messages}`);
@@ -56,16 +53,4 @@ export class EditPage {
       }
     });
   }
-  // onSubmit(form: any) {
-  //   if (this.movie()) {
-  //     const updatedMovie: MovieUpdate = form.value;
-  //     this.http.put(this.httpUrl + '/' + this.movie()?.id, updatedMovie).subscribe({
-  //       error: (err) => {
-  //         console.error('Помилка при оновленні:', err);
-  //       }
-  //     });
-      
-  //     this.router.navigate(['/movie', updatedMovie.Id]);
-  //   }
-  // }
 }
