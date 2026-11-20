@@ -34,6 +34,44 @@
   gap: 15px;
   margin-top: 10px;
 }
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+/* Червона рамка для невалідних полів, які користувач вже чіпав */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #ef4444;
+  outline-color: #ef4444;
+}
+
+.error-messages {
+  margin-top: 4px;
+  color: #f87171;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.alert-error {
+  background-color: rgba(127, 29, 29, 0.4);
+  border: 1px solid #ef4444;
+  color: #fecaca;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
 
 /* Адаптивність */
 @media (max-width: 768px) {

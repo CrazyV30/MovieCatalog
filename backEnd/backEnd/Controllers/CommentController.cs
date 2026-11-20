@@ -14,38 +14,46 @@ namespace backEnd.Controllers
     public class CommentController(CommentService _commentService, IValidator<CommentRequest> _validator, IMapper _mapper) : ControllerBase
     {
         [HttpGet]
-        public ActionResult<List<CommentResponse>> GetAllComments()
-        {
-            return Ok(_commentService.GetAll().Select(c=>_mapper.Map<CommentResponse>(c)).ToList());
-        }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<CommentResponse>>> GetAllComments() => Ok((await _commentService.GetAll()).Select(c=>_mapper.Map<CommentResponse>(c)).ToList());
+        
         [HttpGet("{id:int}")]
-        public ActionResult<MovieComment> GetCommentById([FromRoute] int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<MovieComment>> GetCommentById([FromRoute] int id)
         {
-            var comment = _commentService.GetById(id);
+            var comment = await _commentService.GetById(id);
             if (comment == null) return NotFound();
             return Ok(_mapper.Map<CommentResponse>(comment));
         }
         [HttpPost]
-        public ActionResult AddComment([FromBody] CommentRequest request)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> AddComment([FromBody] CommentRequest request)
         {
             var res = _validator.Validate(request);
             if (!res.IsValid) return BadRequest(res.Errors);
-            _commentService.Add(_mapper.Map<CommentDTO>(request));
+            await _commentService.Add(_mapper.Map<CommentDTO>(request));
             return CreatedAtAction(nameof(AddComment), request);
         }
         [HttpDelete("{id:int}")]
-        public ActionResult RemoveComment([FromRoute] int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> RemoveComment([FromRoute] int id)
         {
-            if (_commentService.Remove(id)) return Ok();
+            if (await _commentService.Remove(id)) return Ok();
             return NotFound();
         }
         [HttpPut("{id:int}")]
-        public ActionResult UpdateComment([FromRoute] int id, [FromBody] CommentRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> UpdateComment([FromRoute] int id, [FromBody] CommentRequest request)
         {
-            var comment = _commentService.GetById(id);
+            var comment = await _commentService.GetById(id);
             if (comment == null) return NotFound();
             comment.Text = request.Text;
-            if (_commentService.Update(comment)) return Ok();
+            if (await _commentService.Update(comment)) return Ok();
             return BadRequest();
         }
     }

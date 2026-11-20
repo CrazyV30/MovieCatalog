@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\validators\\movierequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\validators\\movierequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\validators\\movieupdaterequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\validators\\movieupdaterequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{91C968A4-8DF6-4B3F-85A8-6FADDC762C0C}|DLL\\DLL.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\dll\\repository\\movierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91C968A4-8DF6-4B3F-85A8-6FADDC762C0C}|DLL\\DLL.csproj|solutionrelative:dll\\repository\\movierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,6 +25,30 @@
     {
       "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91C968A4-8DF6-4B3F-85A8-6FADDC762C0C}|DLL\\DLL.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\dll\\repository\\sessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91C968A4-8DF6-4B3F-85A8-6FADDC762C0C}|DLL\\DLL.csproj|solutionrelative:dll\\repository\\sessionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\contracts\\sessionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\contracts\\sessionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91C968A4-8DF6-4B3F-85A8-6FADDC762C0C}|DLL\\DLL.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\dll\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91C968A4-8DF6-4B3F-85A8-6FADDC762C0C}|DLL\\DLL.csproj|solutionrelative:dll\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\backend\\contracts\\sessionresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5CEE1AB-68C5-FCEC-EA61-653FFB609ED2}|backEnd\\backEnd.csproj|solutionrelative:backend\\contracts\\sessionresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97200921-0CC2-41E8-90A6-9891A05FDF63}|Domain\\Domain.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\domain\\models\\moviesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97200921-0CC2-41E8-90A6-9891A05FDF63}|Domain\\Domain.csproj|solutionrelative:domain\\models\\moviesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC716EDE-20D2-4BB3-8DCF-48C8363E92C6}|BLL\\BLL.csproj|d:\\it-office\\projects\\coding(asp-net)\\cinemafull\\backend\\bll\\dtos\\sessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC716EDE-20D2-4BB3-8DCF-48C8363E92C6}|BLL\\BLL.csproj|solutionrelative:bll\\dtos\\sessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,24 +58,77 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Program.cs",
               "RelativeDocumentMoniker": "backEnd\\Program.cs",
               "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Program.cs",
               "RelativeToolTip": "backEnd\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAABQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-08T15:51:32.476Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MovieUpdateRequestValidator.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Validators\\MovieUpdateRequestValidator.cs",
+              "RelativeDocumentMoniker": "backEnd\\Validators\\MovieUpdateRequestValidator.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Validators\\MovieUpdateRequestValidator.cs",
+              "RelativeToolTip": "backEnd\\Validators\\MovieUpdateRequestValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAACVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T09:34:41.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MovieRequestValidator.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Validators\\MovieRequestValidator.cs",
+              "RelativeDocumentMoniker": "backEnd\\Validators\\MovieRequestValidator.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Validators\\MovieRequestValidator.cs",
+              "RelativeToolTip": "backEnd\\Validators\\MovieRequestValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAACVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T09:33:53.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MovieRepository.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Repository\\MovieRepository.cs",
+              "RelativeDocumentMoniker": "DLL\\Repository\\MovieRepository.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Repository\\MovieRepository.cs",
+              "RelativeToolTip": "DLL\\Repository\\MovieRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T09:30:55.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MovieService.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\BLL\\Services\\MovieService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\MovieService.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\BLL\\Services\\MovieService.cs",
+              "RelativeToolTip": "BLL\\Services\\MovieService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAkwC8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T09:29:07.86Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -53,36 +138,84 @@
               "RelativeDocumentMoniker": "backEnd\\Controllers\\MovieController.cs",
               "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Controllers\\MovieController.cs",
               "RelativeToolTip": "backEnd\\Controllers\\MovieController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-17T18:35:59.65Z",
+              "WhenOpened": "2026-11-20T09:11:56.035Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MovieService.cs",
-              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\BLL\\Services\\MovieService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\MovieService.cs",
-              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\BLL\\Services\\MovieService.cs",
-              "RelativeToolTip": "BLL\\Services\\MovieService.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAwBAAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "SessionRepository.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Repository\\SessionRepository.cs",
+              "RelativeDocumentMoniker": "DLL\\Repository\\SessionRepository.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Repository\\SessionRepository.cs",
+              "RelativeToolTip": "DLL\\Repository\\SessionRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-17T18:35:56.403Z",
+              "WhenOpened": "2026-11-20T08:57:53.864Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MovieRepository.cs",
-              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Repository\\MovieRepository.cs",
-              "RelativeDocumentMoniker": "DLL\\Repository\\MovieRepository.cs",
-              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Repository\\MovieRepository.cs",
-              "RelativeToolTip": "DLL\\Repository\\MovieRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABgAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "DLL\\Context\\AppDbContext.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\DLL\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "DLL\\Context\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-17T18:35:55.252Z",
+              "WhenOpened": "2026-11-20T07:35:33.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SessionRequest.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Contracts\\SessionRequest.cs",
+              "RelativeDocumentMoniker": "backEnd\\Contracts\\SessionRequest.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Contracts\\SessionRequest.cs",
+              "RelativeToolTip": "backEnd\\Contracts\\SessionRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T07:34:22.941Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SessionResponse.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Contracts\\SessionResponse.cs",
+              "RelativeDocumentMoniker": "backEnd\\Contracts\\SessionResponse.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\backEnd\\Contracts\\SessionResponse.cs",
+              "RelativeToolTip": "backEnd\\Contracts\\SessionResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T07:12:04.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MovieSession.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\Domain\\Models\\MovieSession.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\MovieSession.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\Domain\\Models\\MovieSession.cs",
+              "RelativeToolTip": "Domain\\Models\\MovieSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T06:44:04.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SessionDTO.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\BLL\\DTOs\\SessionDTO.cs",
+              "RelativeDocumentMoniker": "BLL\\DTOs\\SessionDTO.cs",
+              "ToolTip": "D:\\IT-office\\projects\\Coding(asp-net)\\cinemaFull\\backEnd\\BLL\\DTOs\\SessionDTO.cs",
+              "RelativeToolTip": "BLL\\DTOs\\SessionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T06:42:32.302Z"
             }
           ]
         }

@@ -28,7 +28,9 @@
       </div>
 
       <div class="meta-data">
+        <span class="badge badge-genre">{{ movie()?.genre }}</span>
         <span class="badge">Рік: {{ movie()?.releaseYear }}</span>
+        <span class="badge">Країна: {{ movie()?.country }}</span>
         <span class="badge">Тривалість: {{ movie()?.runtime }}</span>
         <span class="director">Режисер: <strong>{{ movie()?.director }}</strong></span>
       </div>

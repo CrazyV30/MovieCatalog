@@ -13,5 +13,6 @@
         public string Genre { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
         public List<MovieComment> Comments { get; set; } = new List<MovieComment>();
+        public List<MovieSession> MovieSessions { get; set; } = new List<MovieSession>();
     }
 }

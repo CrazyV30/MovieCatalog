@@ -118,7 +118,12 @@
   font-size: 0.8rem;
   margin-left: 4px;
 }
-
+.badge-genre {
+  background-color: rgba(192, 132, 252, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(192, 132, 252, 0.3);
+  font-weight: 600;
+}
 /* Виділення власних коментарів лівою смужкою */
 .comment-item.own-comment {
   border-left-color: var(--accent-secondary, #03dac6);

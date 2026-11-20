@@ -9,5 +9,7 @@ export interface MovieDisplay {
     director: string;
     releaseYear:number;
     moviePath:string;
+    genre:string;
+    country:string;
     comments:Comment[];
 }

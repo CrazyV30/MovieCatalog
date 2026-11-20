@@ -1,86 +1,258 @@
 <div class="form-card">
   <h2>Редагування фільму</h2>
-  
-  <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)" class="movie-form">
-    
-    <input type="hidden" name="Id" [value]="movie()?.id" [(ngModel)]="movie()!.id">
 
-    <!-- Назва -->
-    <div class="form-group">
-      <label for="title">Назва фільму:</label>
-      <input 
-        id="title" type="text" name="Title" 
-        [value]="movie()?.title"
-        [(ngModel)]="movie()!.title" 
-        required #titleInput="ngModel">
-    </div>
+  <!-- Загальне повідомлення про помилку, якщо спробували відправити невалідну форму або прийшла помилка з бекенду -->
+  @if (serverError()) {
+    <div class="alert-error">{{ serverError() }}</div>
+  }
 
-    <div class="form-row">
-      <!-- Режисер -->
+  @if (movie(); as m) {
+    <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)" class="movie-form" novalidate>
+      
+      <input type="hidden" name="Id" [(ngModel)]="m.id">
+
+      <!-- Назва: NotEmpty, Length(1, 50) -->
       <div class="form-group">
-        <label for="director">Режисер:</label>
+        <label for="title">Назва фільму:</label>
         <input 
-          id="director" type="text" name="Director" 
-          [value]="movie()?.director"
-          [(ngModel)]="movie()!.director" required>
+          id="title" 
+          type="text" 
+          name="Title" 
+          #title="ngModel"
+          [(ngModel)]="m.title" 
+          placeholder="Введіть назву фільму"
+          required
+          minlength="1"
+          maxlength="50">
+        @if (title.invalid && (title.dirty || title.touched || movieForm.submitted)) {
+          <div class="error-messages">
+            @if (title.errors?.['required']) {
+              <span>Назва фільму є обов'язковою.</span>
+            }
+            @if (title.errors?.['maxlength']) {
+              <span>Назва занадто довга (максимум 50 символів).</span>
+            }
+          </div>
+        }
       </div>
+
+      <!-- Рядок 1: Режисер, Рік, Тривалість -->
+      <div class="form-row">
+        <!-- Режисер: NotEmpty, Length(5, 40) -->
+        <div class="form-group">
+          <label for="director">Режисер:</label>
+          <input 
+            id="director" 
+            type="text" 
+            name="Director" 
+            #director="ngModel"
+            [(ngModel)]="m.director" 
+            placeholder="Ім'я та прізвище"
+            required
+            minlength="5"
+            maxlength="40">
+          @if (director.invalid && (director.dirty || director.touched || movieForm.submitted)) {
+            <div class="error-messages">
+              @if (director.errors?.['required']) {
+                <span>Вкажіть ім'я режисера.</span>
+              }
+              @if (director.errors?.['minlength'] || director.errors?.['maxlength']) {
+                <span>Ім'я режисера має містити від 5 до 40 символів.</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Рік випуску: NotEmpty, GreaterThan(1920), LessThanOrEqualTo(DateTime.Now.Year) -->
+        <div class="form-group">
+          <label for="year">Рік випуску:</label>
+          <input 
+            id="year" 
+            type="number" 
+            name="ReleaseYear" 
+            #releaseYear="ngModel"
+            min="1921" 
+            [max]="currentYear"
+            [(ngModel)]="m.releaseYear" 
+            placeholder="наприклад, 2024" 
+            required>
+          @if (releaseYear.invalid && (releaseYear.dirty || releaseYear.touched || movieForm.submitted)) {
+            <div class="error-messages">
+              @if (releaseYear.errors?.['required']) {
+                <span>Рік випуску є обов'язковим.</span>
+              }
+              @if (releaseYear.errors?.['min'] || releaseYear.errors?.['max']) {
+                <span>Рік має бути більшим за 1920 та не перевищувати {{ currentYear }}.</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Тривалість: NotEmpty, Matches(@"^[0]?[01234]:[0-5][0-9]$") -->
+        <div class="form-group">
+          <label for="runtime">Тривалість:</label>
+          <input 
+            id="runtime" 
+            type="text" 
+            name="Runtime" 
+            #runtime="ngModel"
+            [(ngModel)]="m.runtime" 
+            placeholder="наприклад, 2:15" 
+            pattern="^[0]?[01234]:[0-5][0-9]$"
+            required>
+          @if (runtime.invalid && (runtime.dirty || runtime.touched || movieForm.submitted)) {
+            <div class="error-messages">
+              @if (runtime.errors?.['required']) {
+                <span>Вкажіть тривалість фільму.</span>
+              }
+              @if (runtime.errors?.['pattern']) {
+                <span>Формат має бути Г:ХХ (наприклад, 1:45 або 02:15).</span>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Рядок 2: Жанр та Країна -->
+      <div class="form-row">
+        <!-- Жанр: NotEmpty, Length(1, 50) -->
+        <div class="form-group">
+          <label for="genre">Жанр:</label>
+          <input 
+            id="genre" 
+            type="text" 
+            name="Genre" 
+            #genre="ngModel"
+            [(ngModel)]="m.genre" 
+            placeholder="наприклад, Фантастика, Драма" 
+            required
+            minlength="1"
+            maxlength="50">
+          @if (genre.invalid && (genre.dirty || genre.touched || movieForm.submitted)) {
+            <div class="error-messages">
+              @if (genre.errors?.['required']) {
+                <span>Вкажіть жанр фільму.</span>
+              }
+              @if (genre.errors?.['maxlength']) {
+                <span>Назва жанру занадто довга (максимум 50 символів).</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Країна: NotEmpty, Length(1, 50) -->
+        <div class="form-group">
+          <label for="country">Країна:</label>
+          <input 
+            id="country" 
+            type="text" 
+            name="Country" 
+            #country="ngModel"
+            [(ngModel)]="m.country" 
+            placeholder="наприклад, США, Україна" 
+            required
+            minlength="1"
+            maxlength="50">
+          @if (country.invalid && (country.dirty || country.touched || movieForm.submitted)) {
+            <div class="error-messages">
+              @if (country.errors?.['required']) {
+                <span>Вкажіть країну виробництва.</span>
+              }
+              @if (country.errors?.['maxlength']) {
+                <span>Назва країни занадто довга (максимум 50 символів).</span>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Посилання на постер: NotEmpty, IsWellFormedUriString -->
       <div class="form-group">
-        <label for="year">Рік випуску:</label>
+        <label for="photoPath">Посилання на постер:</label>
         <input 
-          id="year" type="number" name="ReleaseYear" min="1900" [value]="movie()?.releaseYear"
-          [(ngModel)]="movie()!.releaseYear" 
-          placeholder="наприклад, 2024" 
+          id="photoPath" 
+          type="text" 
+          name="PhotoPath" 
+          #photoPath="ngModel"
+          [(ngModel)]="m.photoPath" 
+          placeholder="https://example.com/poster.jpg або /images/poster.jpg"
+          pattern="^(https?:\/\/[^\s$.?#].[^\s]*|\/[^\s]*)$"
           required>
+        @if (photoPath.invalid && (photoPath.dirty || photoPath.touched || movieForm.submitted)) {
+          <div class="error-messages">
+            @if (photoPath.errors?.['required']) {
+              <span>Посилання на постер є обов'язковим.</span>
+            }
+            @if (photoPath.errors?.['pattern']) {
+              <span>Некоректна URL-адреса постера.</span>
+            }
+          </div>
+        }
       </div>
-      <!-- Тривалість -->
+
+      <!-- Посилання на фільм: NotEmpty, IsWellFormedUriString -->
       <div class="form-group">
-        <label for="runtime">Тривалість:</label>
+        <label for="videoPath">Посилання на фільм:</label>
         <input 
-          id="runtime" type="text" name="Runtime" 
-          [value]="movie()?.runtime"
-          [(ngModel)]="movie()!.runtime" 
-          placeholder="наприклад, 1:20" 
-          
+          id="videoPath" 
+          type="text" 
+          name="MoviePath" 
+          #moviePath="ngModel"
+          [(ngModel)]="m.moviePath" 
+          placeholder="https://example.com/watch?v=... або /movies/video.mp4" 
+          pattern="^(https?:\/\/[^\s$.?#].[^\s]*|\/[^\s]*)$"
           required>
+        @if (moviePath.invalid && (moviePath.dirty || moviePath.touched || movieForm.submitted)) {
+          <div class="error-messages">
+            @if (moviePath.errors?.['required']) {
+              <span>Посилання на фільм є обов'язковим.</span>
+            }
+            @if (moviePath.errors?.['pattern']) {
+              <span>Некоректна URL-адреса фільму.</span>
+            }
+          </div>
+        }
       </div>
-    </div>
 
-    <!-- Посилання на постер (photoPath) -->
-    <div class="form-group">
-      <label for="photoPath">Посилання на постер:</label>
-      <input 
-        id="photoPath" type="url" name="PhotoPath" 
-        [value]="movie()?.photoPath"
-        [(ngModel)]="movie()!.photoPath" 
-        required>
-    </div>
-    <div class="form-group">
-      <label for="videoPath">Посилання на фільм:</label>
-      <input 
-        id="videoPath" type="url" name="MoviePath" [value]="movie()?.moviePath"
-        [(ngModel)]="movie()!.moviePath" 
-        placeholder="https://example.com/watch?v=..." 
-        required>
-    </div>
-    <!-- Опис -->
-    <div class="form-group">
-      <label for="description">Опис фільму:</label>
-      <textarea 
-        id="description" name="Description" rows="6" 
-        [value]="movie()?.description"
-        [(ngModel)]="movie()!.description" 
-        required></textarea>
-    </div>
+      <!-- Опис: NotEmpty, Length(1, 450) -->
+      <div class="form-group">
+        <label for="description">
+          Опис фільму: <small>({{ m.description?.length || 0 }}/450)</small>
+        </label>
+        <textarea 
+          id="description" 
+          name="Description" 
+          #description="ngModel"
+          rows="5" 
+          [(ngModel)]="m.description" 
+          placeholder="Короткий сюжет фільму..."
+          required
+          minlength="1"
+          maxlength="450"></textarea>
+        @if (description.invalid && (description.dirty || description.touched || movieForm.submitted)) {
+          <div class="error-messages">
+            @if (description.errors?.['required']) {
+              <span>Опис фільму є обов'язковим.</span>
+            }
+            @if (description.errors?.['maxlength']) {
+              <span>Опис занадто довгий (максимум 450 символів).</span>
+            }
+          </div>
+        }
+      </div>
 
-    <!-- Дії -->
-    <div class="form-actions">
-      <button type="button" class="btn btn-secondary" (click)="cancel()">
-        Скасувати
-      </button>
-      <button type="submit" class="btn btn-primary" [disabled]="movieForm.invalid">
-        Зберегти зміни
-      </button>
-    </div>
+      <!-- Дії -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="cancel()">
+          Скасувати
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="movieForm.invalid">
+          Зберегти зміни
+        </button>
+      </div>
 
-  </form>
+    </form>
+  } @else {
+    <p class="loading-text">Завантаження даних фільму...</p>
+  }
 </div>

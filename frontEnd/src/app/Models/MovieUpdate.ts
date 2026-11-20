@@ -7,4 +7,6 @@ export interface MovieUpdate {
     Director: string;
     ReleaseYear:number;
     MoviePath:string;
+    Genre:string;
+    Country:string;
 }

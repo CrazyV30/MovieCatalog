@@ -9,10 +9,12 @@ namespace Dll.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MovieComment> Comments { get; set; }
+        public DbSet<MovieSession> Sessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MovieComment>().HasOne(c => c.Movie).WithMany(m => m.Comments).HasForeignKey(c => c.MovieId).OnDelete(DeleteBehavior.Cascade); 
+            modelBuilder.Entity<MovieSession>().HasOne(c => c.Movie).WithMany(m => m.MovieSessions).HasForeignKey(c => c.MovieId).OnDelete(DeleteBehavior.Cascade); 
         }
     }
 }

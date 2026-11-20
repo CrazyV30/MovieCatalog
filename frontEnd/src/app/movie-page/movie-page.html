@@ -15,38 +15,57 @@
     <!-- Сітка фільмів -->
     <div class="movies-grid">
       @for (movie of movies(); track movie.id) {
-        <div class="movie-card" (click)="viewMovieDetails(movie.id)">
-          @if (authService.currentUser()) {
-              <button 
-                type="button" 
-                class="btn-delete-card" 
-                title="Видалити фільм"
-                (click)="$event.stopPropagation()"
-                (click)="removeMovie(movie.id)"
-              > ✕
-              </button>
+       <div class="movie-card" (click)="viewMovieDetails(movie.id)">
+        @if (authService.currentUser()) {
+          <button
+            type="button"
+            class="btn-delete-card"
+            title="Видалити фільм"
+            (click)="$event.stopPropagation()"
+            (click)="removeMovie(movie.id)"
+          > ✕
+          </button>
+        }
+
+        <div class="card-poster">
+          <img [src]="movie.photoPath" [alt]="movie.title" loading="lazy">
+          <!-- Бейдж жанру поверх постера -->
+          @if (movie.genre) {
+            <span class="poster-genre-badge">{{ movie.genre }}</span>
           }
-          <div class="card-poster">
-            <img [src]="movie.photoPath" [alt]="movie.title" loading="lazy">
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">{{ movie.title }}</h3>
+
+          <!-- Оновлена мета-інформація: Рік • Країна • Тривалість -->
+          <div class="card-meta">
+            <span>{{ movie.releaseYear }} р.</span>
+            @if (movie.country) {
+              <span class="dot">•</span>
+              <span>{{ movie.country }}</span>
+            }
+            <span class="dot">•</span>
+            <span>{{ movie.runtime }}</span>
           </div>
-          <div class="card-content">
-            <h3 class="card-title">{{ movie.title }}</h3>
-            <p class="card-meta">
-              <span>{{ movie.releaseYear }} р.</span> • <span>{{ movie.runtime }}</span> • <span>{{ movie.director }}</span>
-            </p>
-            <p class="card-description">{{ movie.description }}</p>
-            <div class="card-actions">
-            <a 
-              [href]="movie.moviePath" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+
+          <!-- Режисер окремим акцентом -->
+          <p class="card-director">Реж.: <span>{{ movie.director }}</span></p>
+
+          <p class="card-description">{{ movie.description }}</p>
+
+          <div class="card-actions">
+            <a
+              [href]="movie.moviePath"
+              target="_blank"
+              rel="noopener noreferrer"
               class="btn btn-watch-sm"
               (click)="$event.stopPropagation()">
               ▶ Дивитися
             </a>
           </div>
-          </div>
         </div>
+      </div>
       } @empty {
         <div class="empty-state">
           <p>Фільмів поки немає в каталозі.</p>

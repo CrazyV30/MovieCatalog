@@ -7,43 +7,33 @@ namespace Dll.Repository
 {
     public class MovieRepository(AppDbContext _context) : IRepository<Movie>
     {
-        public bool Add(Movie entity)
+        public async Task<bool> Add(Movie entity)
         {
-            _context.Movies.Add(entity);
-            _context.SaveChanges();
+            await _context.Movies.AddAsync(entity);
             return true;
         }
 
-        public bool ExistId(int id) => _context.Movies.Any(m => m.Id == id);
+        public async Task<bool> ExistId(int id) => await _context.Movies.AnyAsync(m => m.Id == id);
 
-        public List<Movie> GetAll() => _context.Movies.ToList();
+        public async Task<List<Movie>> GetAll() => await _context.Movies.ToListAsync();
 
-        public Movie? GetByName(string name) => _context.Movies.FirstOrDefault(m => string.Equals(m.Title.ToLower(), name.ToLower()));
-        public Movie? GetById(int id) => _context.Movies.Include(m => m.Comments).FirstOrDefault(m => m.Id == id);
+        public async Task<Movie?> GetByName(string name) => await _context.Movies.FirstOrDefaultAsync(m => string.Equals(m.Title.ToLower(), name.ToLower()));
+        public async Task<Movie?> GetById(int id) => await _context.Movies.Include(m => m.Comments).FirstOrDefaultAsync(m => m.Id == id);
         public async Task<List<Movie>> SearchBCondition(Expression<Func<Movie, bool>> predicat) => await _context.Movies.Where(predicat).ToListAsync();
 
         public bool Remove(Movie entity)
         {
             _context.Movies.Remove(entity);
-            _context.SaveChanges();
             return true;
         }
 
-        public bool Update(Movie entity)
+        public async Task<bool> Update(Movie entity)
         {
-            if (!ExistId(entity.Id)) return false;;
-            var movie = _context.Movies.FirstOrDefault(m => entity.Id == m.Id);
-            movie.Title = entity.Title;
-            movie.Description = entity.Description;
-            movie.PhotoPath = entity.PhotoPath;
-            movie.Director = entity.Director;
-            movie.Runtime = entity.Runtime;
-            movie.ReleaseYear = entity.ReleaseYear;
-            movie.MoviePath = entity.MoviePath;
-            movie.Genre = entity.Genre;
-            movie.Country = entity.Country;
-            _context.SaveChanges();
+            if (!(await ExistId(entity.Id))) return false;
+            var movie = await GetById(entity.Id);
+            _context.Entry(movie!).CurrentValues.SetValues(entity);
             return true;
         }
+        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

@@ -1,19 +1,21 @@
 ﻿using Dll.Context;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dll.Repository
 {
     public class UserRepository(AppDbContext _context) : IUserRepository
     {
-        public bool AddUser(User user)
+        public async Task<bool> AddUser(User user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(user);
             return true;
         }
 
-        public User? GetUserByLogin(string login) => _context.Users.FirstOrDefault(u => u.Email == login);
+        public async Task<User?> GetUserByLogin(string login) => await _context.Users.FirstOrDefaultAsync(u => u.Email == login);
 
-        public bool Login(string email, string pass) => _context.Users.Any<User>(u => string.Equals(u.Email,email) && string.Equals(u.Password, pass));
+        public async Task<bool> Login(string email, string pass) => await _context.Users.AnyAsync<User>(u => string.Equals(u.Email,email) && string.Equals(u.Password, pass));
+
+        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

@@ -6,4 +6,6 @@ export interface Movie {
     Director: string;
     ReleaseYear:number;
     MoviePath:string;
+    Genre:string;
+    Country:string;
 }

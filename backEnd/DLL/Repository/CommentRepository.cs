@@ -10,33 +10,32 @@ namespace DLL.Repository
 {
     public class CommentRepository(AppDbContext _context) : IRepository<MovieComment>
     {
-        public bool Add(MovieComment entity)
+        public async Task<bool> Add(MovieComment entity)
         {
-            entity.Movie = _context.Movies.FirstOrDefault(m => m.Id == entity.MovieId)!;
-            _context.Comments.Add(entity);
-            _context.SaveChanges();
+            entity.Movie = (await _context.Movies.FirstOrDefaultAsync(m => m.Id == entity.MovieId))!;
+            await _context.Comments.AddAsync(entity);
             return true;
         }
 
-        public bool ExistId(int id) => _context.Comments.Any<MovieComment>(c => c.Id == id);
+        public async Task<bool> ExistId(int id) => await _context.Comments.AnyAsync<MovieComment>(c => c.Id == id);
 
-        public List<MovieComment> GetAll() => _context.Comments.ToList();
+        public async Task<List<MovieComment>> GetAll() => await _context.Comments.ToListAsync();
 
-        public MovieComment? GetById(int id) => _context.Comments.FirstOrDefault(c => c.Id == id);
+        public async Task<MovieComment?> GetById(int id) => await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
 
         public bool Remove(MovieComment entity)
         {
             _context.Comments.Remove(entity);
-            _context.SaveChanges();
             return true;
         }
 
-        public bool Update(MovieComment entity)
+        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+
+        public async Task<bool> Update(MovieComment entity)
         {
-            var com = _context.Comments.FirstOrDefault(c => c.Id == entity.Id);
+            var com = await _context.Comments.FirstOrDefaultAsync(c => c.Id == entity.Id);
             if (com == null) return false;
             com.Text = entity.Text;
-            _context.SaveChanges();
             return true;
         }
     }

@@ -6,24 +6,21 @@ using AutoMapper;
 
 namespace Bll.Services
 {
-    public enum UserRegisterResult
-    {
-        Ok
-    }
     public class UserService(UserRepository _userRepository, IMapper _mapper)
     {
-        public UserRegisterResult Register(UserRegisterDTO userDTO)
+        public async Task<bool> Register(UserRegisterDTO userDTO)
         {
-            _userRepository.AddUser(_mapper.Map<User>(userDTO));
-            return UserRegisterResult.Ok;
+            await _userRepository.AddUser(_mapper.Map<User>(userDTO));
+            await _userRepository.SaveChangesAsync();
+            return true;
         }
 
-        public UserDTO? GetUserByLogin(string login) {
-            var user = _userRepository.GetUserByLogin(login);
+        public async Task<UserDTO?> GetUserByLogin(string login) {
+            var user = await _userRepository.GetUserByLogin(login);
             if (user == null) return null;
             return _mapper.Map<UserDTO>(user);
         }
 
-        public bool Login(string email, string pass) => _userRepository.Login(email, pass);
+        public async Task<bool> Login(string email, string pass) => await _userRepository.Login(email, pass);
     }
 }

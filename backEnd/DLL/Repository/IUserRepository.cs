@@ -4,8 +4,9 @@ namespace Dll.Repository
 {
     public interface IUserRepository
     {
-        User? GetUserByLogin(string login);
-        bool AddUser(User user);
-        bool Login(string login, string pass);
+        Task<User?> GetUserByLogin(string login);
+        Task<bool> AddUser(User user);
+        Task<bool> Login(string login, string pass);
+        Task SaveChangesAsync();
     }
 }

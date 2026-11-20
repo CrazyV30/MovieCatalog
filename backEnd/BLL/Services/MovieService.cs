@@ -9,50 +9,46 @@ namespace Bll.Services
 {
     public class MovieService(MovieRepository _movieRepository, IMapper _mapper)
     {
-        public enum MovieResult
+        public async Task<List<MovieDTO>> GetAllMovies() => (await _movieRepository.GetAll()).Select(m => _mapper.Map<MovieDTO>(m)).ToList();
+        public async Task<MovieDTO?> GetMovieByName(string name)
         {
-            Ok,
-            NullMovieError,
-            NotFoundError
-        }
-        public List<MovieDTO> GetAllMovies() => _movieRepository.GetAll().Select(m => _mapper.Map<MovieDTO>(m)).ToList();
-        public MovieDTO? GetMovieByName(string name)
-        {
-            var movie = _movieRepository.GetByName(name);
+            var movie = await _movieRepository.GetByName(name);
             if (movie == null) return null;
             return _mapper.Map<MovieDTO>(movie);
         }
-        public MovieDTO? GetMovieById(int id)
+        public async Task<MovieDTO?> GetMovieById(int id)
         {
-            var movie = _movieRepository.GetById(id);
+            var movie = await _movieRepository.GetById(id);
             if (movie == null) return null;
             var dto = _mapper.Map<MovieDTO>(movie);
             dto.Comments = movie.Comments.Select(c => _mapper.Map<CommentDTO>(c)).ToList();
             return dto;
         }
-        public MovieResult AddMovie(MovieDTO movieDTO)
+        public async Task<bool> AddMovie(MovieDTO movieDTO)
         {
-            if (movieDTO == null) return MovieResult.NullMovieError;
+            if (movieDTO == null) return false;
 
             var movie = _mapper.Map<Movie>(movieDTO);
             movie.Comments = new List<MovieComment>();
-            _movieRepository.Add(movie);
-            return MovieResult.Ok;
+            await _movieRepository.Add(movie);
+            await _movieRepository.SaveChangesAsync();
+            return true;
         }
-        public MovieResult DeleteMovie(MovieDTO movieDTO)
+        public async Task<bool> DeleteMovie(MovieDTO movieDTO)
         {
-            var movie = _movieRepository.GetById(movieDTO.Id);
+            var movie = await _movieRepository.GetById(movieDTO.Id);
             _movieRepository.Remove(movie!);
-            return MovieResult.Ok;
+            await _movieRepository.SaveChangesAsync();
+            return true;
         }
-        public MovieResult UpdateMovie(MovieDTO movieDTO)
+        public async Task<bool> UpdateMovie(MovieDTO movieDTO)
         {
-            var movie = _movieRepository.GetById(movieDTO.Id);
-            if (movie == null) return MovieResult.NotFoundError;
+            if (!(await _movieRepository.ExistId(movieDTO.Id))) return false;
             var upd = _mapper.Map<Movie>(movieDTO);
-            upd.Id = movie.Id;
-            _movieRepository.Update(upd);
-            return MovieResult.Ok;
+            upd.Id = movieDTO.Id;
+            await _movieRepository.Update(upd);
+            await _movieRepository.SaveChangesAsync();
+            return true;
         }
         public async Task<List<MovieDTO>> SearchByFilter(SearchFilterDTO searchFilter)
         {
@@ -62,7 +58,7 @@ namespace Bll.Services
             if (searchFilter.Id != null) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => x.Id == searchFilter.Id));
             if (searchFilter.Year!= null) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => x.ReleaseYear == searchFilter.Year));
             if (!string.IsNullOrEmpty(searchFilter.KeyWord)) return _mapper.Map<List<MovieDTO>>(await _movieRepository.SearchBCondition(x => x.Title.ToLower().Contains(searchFilter.KeyWord.ToLower()) || x.Description.ToLower().Contains(searchFilter.KeyWord.ToLower())));
-            return GetAllMovies();
+            return await GetAllMovies();
         }
     }
 }

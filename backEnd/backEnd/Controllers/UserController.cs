@@ -15,27 +15,27 @@ namespace backEnd.Controllers
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Login([FromBody]LoginRequest userLogin)
+        public async Task<ActionResult> Login([FromBody]LoginRequest userLogin)
         {
-            if (_userService.Login(userLogin.Email, userLogin.Password)) return Ok();
+            if (await _userService.Login(userLogin.Email, userLogin.Password)) return Ok();
             return BadRequest("Login or Password is uncorrect");
         }
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Register([FromBody] RegisterRequest userRegister)
+        public async Task<ActionResult> Register([FromBody] RegisterRequest userRegister)
         {
             var res = _validator.Validate(userRegister);
             if (!res.IsValid) return BadRequest(res.Errors);
-            _userService.Register(_mapper.Map<UserRegisterDTO>(userRegister));
+            await _userService.Register(_mapper.Map<UserRegisterDTO>(userRegister));
             return Ok();
         }
         [HttpGet("{login}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<UserResponse> GetUserByLogin([FromRoute] string login)
+        public async Task<ActionResult<UserResponse>> GetUserByLogin([FromRoute] string login)
         {
-            var user = _userService.GetUserByLogin(login);
+            var user = await _userService.GetUserByLogin(login);
             if (user == null) return NotFound("Not found");
             return Ok(_mapper.Map<UserResponse>(user));
         }
